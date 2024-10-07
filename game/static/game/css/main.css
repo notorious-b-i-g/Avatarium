@@ -1,0 +1,60 @@
+
+/* Контейнер для полноэкранного изображения */
+.fullscreen-container {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* Фоновое изображение */
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.control-panel {
+    position: absolute;
+    bottom: 2vh; /* Отступ от нижнего края относительно высоты экрана */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90vw; /* Ширина как процент от ширины видимой области окна */
+    background: url("../img/control_panel.svg") no-repeat center center; /* Добавляем фоновое изображение панели */
+    background-size: 90% 90%; /* Полное заполнение фона в соответствии с размерами элемента */
+    padding: 4vh 1vw; /* Отступы относительно размера видимой области экрана */
+    box-sizing: border-box /* Учитываем паддинг в ширину контейнера */
+
+}
+
+
+.nav-icons {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    list-style: none;
+}
+
+.nav-item {
+    margin-right: 7vw;
+}
+
+.single-button {
+    display: inline-block;
+    transition: transform 0.3s ease; /* Плавный переход при увеличении */
+}
+
+.single-button img {
+    width: 7vw;
+    transform: translateY(-50%);
+
+    display: block;
+}
+
+/* Эффект увеличения при наведении */
+.single-button:hover {
+    transform: scale(1.2); /* Увеличение всей кнопки вместе с изображением */
+}

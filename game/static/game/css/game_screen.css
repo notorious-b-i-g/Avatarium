@@ -1,0 +1,29 @@
+.ava-place {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw; /* Ширина контейнера зависит от ширины экрана */
+    aspect-ratio: 1 / 1; /* Контейнер всегда будет квадратным */
+    overflow: hidden; /* Обрезаем изображение, если оно выходит за границы контейнера */
+}
+
+.ava {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Масштабируем изображение, чтобы оно заполнило контейнер */
+    display: block;
+}
+
+.click-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent; /* Кнопка невидимая, но кликабельная */
+    border: none; /* Убираем обводку */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+    z-index: 10; /* Кнопка выше изображения */
+}
+

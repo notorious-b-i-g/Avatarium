@@ -1,0 +1,176 @@
+.quest-menu {
+    position: absolute;
+    width: 90%;
+    top: 50%;
+    left: 46%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row; /* Горизонтальное направление */
+    justify-content: center; /* Центрирование элементов по горизонтали */
+    align-items: center; /* Центрирование элементов по вертикали */
+    gap: 8vw; /* Промежуток между элементами */
+}
+
+.all-quests, .completed-quests {
+    font-size: 3.5vw; /* Адаптивный размер шрифта */
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    font-weight: bold;
+    cursor: pointer; /* Указатель, показывающий, что это кликабельные элементы */
+    width: 35vw; /* Фиксированная ширина для предотвращения смещения */
+    box-sizing: border-box; /* Включаем рамку в расчет ширины */
+
+    /* Добавляем базовую рамку с прозрачным цветом */
+    border: 1.5px solid transparent;
+
+    /* Добавляем плавный переход для свойства border-color */
+    transition: border-color 0.3s ease, border-radius 0.3s ease;
+}
+
+.active-border {
+    border-color: white; /* Изменение цвета рамки на белый */
+    border-radius: 30px;
+}
+
+.quest-title {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 5.5vw; /* Адаптивный размер шрифта */
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    font-weight: 800; /* Extrabold */
+}
+
+.quest-top {
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    transform: translateX(-50%);
+    font-size: 4.5vw; /* Адаптивный размер шрифта */
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    font-weight: 700;
+}
+
+
+.top-quests-div {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 25vh; /* Фиксированная высота 20% от высоты видимой области страницы */
+    width: 90vw; /* Ширина 90% от ширины видимой области окна */
+    overflow-y: auto; /* Включаем прокрутку */
+    display: flex;
+    flex-direction: column; /* Элементы располагаются вертикально */
+    gap: 2vh; /* Отступы между элементами */
+}
+
+.quest-content {
+    position: relative; /* Добавьте эту строку */
+    display: flex;
+    min-height: 6vh; /* Минимальная высота каждого quest-content */
+    flex-direction: row;
+    align-items: center;
+    width: 100%; /* Ширина 100% от родительского контейнера */
+    background: url("../img/quests/incomplete_quest.svg") no-repeat center center;
+    background-size: cover;
+    border-radius: 22px;
+    overflow: hidden;
+}
+
+.quest-logo {
+    width: 6vw;
+    height: auto;
+    margin-right: 10px; /* Отступ справа от изображения */
+    margin-left: 10px; /* Отступ слева для сдвига изображения вправо */
+
+}
+
+.quest-disc {
+    margin: 0; /* Убираем отступы у текста */
+    font-size: 3.5vw; /* Адаптивный размер шрифта */
+    font-family: 'Montserrat', sans-serif;
+    color: #41576B;
+    max-width: 70%; /* Ограничение максимальной ширины текста */
+    font-weight: 600;
+
+    word-wrap: break-word; /* Перенос длинных слов на новую строку */
+}
+
+.quest-disc-no-image {
+    margin: 0; /* Убираем отступы у текста */
+    font-size: 3.5vw; /* Адаптивный размер шрифта */
+    font-family: 'Montserrat', sans-serif;
+    color: #41576B;
+    max-width: 70%; /* Ограничение максимальной ширины текста */
+    word-wrap: break-word; /* Перенос длинных слов на новую строку */
+    font-weight: 600;
+
+    margin-left: 25px; /* Отступ слева, когда изображения нет */
+}
+
+.quest-price {
+    position: absolute;
+    margin: 0; /* Убираем отступы у текста */
+
+    right: 5vw;  /* Прижимаем к правому краю родительского блока */
+    font-weight: 700;
+    color: #0AB0D7;
+
+}
+
+.common-quests-div {
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 30vh; /* Фиксированная высота 20% от высоты видимой области страницы */
+    width: 90vw; /* Ширина 90% от ширины видимой области окна */
+    overflow-y: auto; /* Включаем прокрутку */
+    display: flex;
+    flex-direction: column; /* Элементы располагаются вертикально */
+    gap: 2vh; /* Отступы между элементами */
+}
+
+.completed-quests-div {
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 30vh; /* Фиксированная высота 20% от высоты видимой области страницы */
+    width: 90vw; /* Ширина 90% от ширины видимой области окна */
+    overflow-y: auto; /* Включаем прокрутку */
+    display: flex;
+    flex-direction: column; /* Элементы располагаются вертикально */
+    gap: 2vh; /* Отступы между элементами */
+}
+
+.goto-image {
+    position: absolute;
+    width: 7px;
+    height: auto;
+    right: 2vw;
+}
+.hidden {
+    display: none;
+}
+
+.completed {
+    background: url("../img/quests/complete_quest.svg") no-repeat center center;
+    background-size: cover;
+
+}
+
+.text-completed {
+    color: white;
+
+}

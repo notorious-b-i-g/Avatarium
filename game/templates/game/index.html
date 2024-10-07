@@ -1,0 +1,19 @@
+{% extends 'game/quest.html' %}
+{% load static %}
+
+{% block title %}Игра жизни{% endblock %}
+
+{% block page_0 %}
+    <img id="background-img1" src="{% static 'game/img/background_0.svg' %}" class="background-image">
+
+    <div class="ava-place">
+        <img src="{{ user.avatarka.url }}" alt="Avatar" class="ava">
+        <button id="click-button" class="click-button" onclick="countClicks(initialBalance, userId)"></button>
+    </div>
+
+{% endblock %}
+
+
+
+
+
