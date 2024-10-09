@@ -1,3 +1,4 @@
+
 // quest.js
 function initQuestJS() {
     // Функция для переключения активного класса

@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="{% static 'game/css/main.css' %}">
     <link rel="stylesheet" href="{% static 'game/css/quest_menu.css' %}">
     <link rel="stylesheet" href="{% static 'game/css/game_screen.css' %}">
-    <link rel="stylesheet" href="{% static 'game/css/tasks.css' %}">
 
     <style>
         .block-content {
@@ -46,16 +45,9 @@
         </div>
     </main>
 
-<script>
-    var updateBalanceUrl = "{% url 'update_balance' %}";
-    var csrfToken = "{{ csrf_token }}";
-    let initialBalance = {{ initial_balance|default:0 }};
-    const userId = {{ user.id|default:'null' }};
-</script>
 <script src="{% static 'game/js/main.js' %}"></script>
-<script src="{% static 'game/js/clicker.js' %}"></script>
 <script src="{% static 'game/js/quest.js' %}"></script>
-<script src="{% static 'game/js/tasks.js' %}"></script>
+<script src="{% static 'game/js/clicker.js' %}"></script>
 
 </body>
 </html>

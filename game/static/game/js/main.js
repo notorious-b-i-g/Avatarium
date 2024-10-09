@@ -5,9 +5,8 @@ function loadContent(tab) {
         page = 'index';  // URL, настроенный в Django urls.py
     } else if(tab == '1') {
         page = 'quest';  // URL, настроенный в Django urls.py
-    } else if(tab == '2') {
-        page = 'tasks';  // URL, настроенный в Django urls.py
     }
+    console.log(page)
     var xhr = new XMLHttpRequest();
     xhr.open('GET', page, true);
     xhr.onreadystatechange = function () {
@@ -19,8 +18,9 @@ function loadContent(tab) {
             // Инициализируем скрипты для загруженного контента
             if (page === 'quest') {
                 initQuestJS();
-            } else if(page === 'tasks') {
-                initTasksJS();
+            }
+            else if (page === 'index') {
+                initIndexJS();
             }
         }
     };

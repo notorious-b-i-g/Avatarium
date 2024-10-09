@@ -1,16 +1,16 @@
+<!-- index.html -->
 {% load static %}
 
+<div id="clicker-container"
+     data-update-balance-url="{% url 'update_balance' %}"
+     data-csrf-token="{{ csrf_token }}"
+     data-initial-balance="{{ initial_balance|default:0 }}"
+     data-user-id="{{ user.id|default:'null' }}">
 
-<img id="background-img1" src="{% static 'game/img/background_0.svg' %}" class="background-image">
+    <img id="background-img1" src="{% static 'game/img/background_0.svg' %}" class="background-image">
 
-<div class="ava-place">
-    <img src="{{ user.avatarka.url }}" alt="Avatar" class="ava">
-    <button id="click-button" class="click-button" onclick="countClicks(initialBalance, userId)"></button>
+    <div class="ava-place">
+        <img src="{{ user.avatarka.url }}" alt="Avatar" class="ava">
+        <button id="click-button" class="click-button"></button>
+    </div>
 </div>
-
-
-
-
-
-
-
