@@ -1,0 +1,63 @@
+.category-game-title {
+    position: absolute;
+    width: 182px;
+    left: calc(50% - 182px/2);
+    top: 11.8%;
+    bottom: 85.41%;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 19px;
+    text-align: center;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+}
+
+.categories{
+    position: absolute;
+    width: 182px;
+    left: calc(50% - 182px/2 - 62px);
+    top: 16.09%;
+    bottom: 81.12%;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 17px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+}
+/* Контейнер для категорий */
+.categories-div {
+    display: flex; /* Используем Flexbox для выравнивания элементов */
+    flex-wrap: wrap; /* Позволяем элементам переноситься на новую строку */
+    justify-content: center; /* Центрирование элементов по горизонтали */
+    gap: 20px; /* Задаём расстояние между элементами */
+    padding: 20px; /* Внутренние отступы */
+    width: 100%; /* Устанавливаем ширину контейнера */
+    box-sizing: border-box; /* Включаем внутренние отступы в расчёт ширины */
+    max-height: 800px;
+    overflow-y: auto; /* Вертикальная прокрутка */
+
+    position:absolute;
+    top: 20%;
+    left: 50%;
+    transform : translateX(-50%);
+}
+
+/* Элементы категории */
+.categories-content {
+    width: 120px; /* Фиксированная ширина блока */
+    height: 120px; /* Фиксированная высота блока */
+    display: flex; /* Flexbox для вертикального центрирования */
+    justify-content: center; /* Центрирование содержимого по горизонтали */
+    align-items: center; /* Центрирование содержимого по вертикали */
+}
+
+/* Логотип внутри блока категории */
+.task-logo {
+    max-width: 100%; /* Логотип занимает всю ширину блока */
+    height: auto; /* Высота автоматически подстраивается для сохранения пропорций */
+}
+

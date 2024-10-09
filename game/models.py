@@ -1,10 +1,18 @@
 from django.db import models
 
 
+class TaskCategory(models.Model):
+    category_name = models.CharField(max_length=255)
+    logo = models.ImageField(upload_to='tasks/logos', blank=True, null=True)
+    def __str__(self):
+        return self.category_name
+
+
 class Task(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     cost = models.IntegerField()
+    category = models.ForeignKey(TaskCategory, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.title

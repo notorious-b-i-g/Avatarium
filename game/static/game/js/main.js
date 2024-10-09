@@ -1,44 +1,33 @@
-function loadAnotherPage(pageIndex) {
-    // Получаем все блоки
-    const blocks = document.querySelectorAll('.block-content');
-
-    // Удаляем класс 'active' у всех блоков, скрывая их
-    blocks.forEach(block => {
-        block.classList.remove('active');
-    });
-
-    // Находим нужный блок по id и добавляем ему класс 'active', чтобы его отобразить
-    const activeBlock = document.getElementById(`block${pageIndex}`);
-    if (activeBlock) {
-        activeBlock.classList.add('active');
+// main.js
+function loadContent(tab) {
+    var page = '';
+    if(tab == '0') {
+        page = 'index';  // URL, настроенный в Django urls.py
+    } else if(tab == '1') {
+        page = 'quest';  // URL, настроенный в Django urls.py
+    } else if(tab == '2') {
+        page = 'tasks';  // URL, настроенный в Django urls.py
     }
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', page, true);
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById('content').innerHTML = xhr.responseText;
+            // Обновляем URL без перезагрузки страницы
+            history.pushState(null, '' + tab);
+
+            // Инициализируем скрипты для загруженного контента
+            if (page === 'quest') {
+                initQuestJS();
+            } else if(page === 'tasks') {
+                initTasksJS();
+            }
+        }
+    };
+    xhr.send();
 }
 
-// Функция для переключения активного класса
-function toggleActive(elementToActivate, elementToDeactivate) {
-    elementToDeactivate.classList.remove('active-border');
-    elementToActivate.classList.add('active-border');
-}
-
-// Получаем ссылки на элементы меню и блоки с квестами
-const allQuests = document.getElementById('all-quests');
-const completedQuests = document.getElementById('completed-quests');
-const commonQuestsDiv = document.querySelector('.common-quests-div');
-const completedQuestsDiv = document.querySelector('.completed-quests-div');
-// Функция для переключения видимости блоков
-function toggleQuests(questsToShow, questsToHide) {
-    questsToHide.classList.add('hidden');
-    questsToShow.classList.remove('hidden');
-}
-
-// Добавляем обработчики кликов для переключения классов и блоков
-allQuests.addEventListener('click', function() {
-    toggleActive(allQuests, completedQuests);
-    toggleQuests(commonQuestsDiv, completedQuestsDiv);
-});
-
-completedQuests.addEventListener('click', function() {
-    toggleActive(completedQuests, allQuests);
-    toggleQuests(completedQuestsDiv, commonQuestsDiv);
-});
-
+// Загрузка контента при загрузке страницы
+window.onload = function() {
+    loadContent(0);
+};

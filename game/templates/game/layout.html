@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{% static 'game/css/main.css' %}">
     <link rel="stylesheet" href="{% static 'game/css/quest_menu.css' %}">
     <link rel="stylesheet" href="{% static 'game/css/game_screen.css' %}">
+    <link rel="stylesheet" href="{% static 'game/css/tasks.css' %}">
 
     <style>
         .block-content {
@@ -27,28 +28,21 @@
 <body>
     <main>
         <div class="fullscreen-container">
-            <div id="block0" class="block-content">
-                {% block page_0 %} {% endblock %}
-            </div>
-            <div id="block1" class="block-content active">
-                {% block page_1 %} {% endblock %}
-            </div>
-            <div id="block2" class="block-content">
-                {% block page_2 %} {% endblock %}
+            <div id="content">
+                <!-- Здесь будет загружаться контент -->
             </div>
 
             <div class="control-panel">
                 <ul class="nav-icons">
                     {% for i in button_indices %}
                         <li class="nav-item">
-                            <span id="custom-button{{ i }}" class="single-button" onclick="loadAnotherPage({{ i }})">
+                            <span id="custom-button{{ i }}" class="single-button" onclick="loadContent({{ i }})">
                                 <img src="{% static 'game/img/navigate_buttons/b_' %}{{ i }}.svg" alt="Кнопка {{ i }}">
                             </span>
                         </li>
                     {% endfor %}
                 </ul>
             </div>
-
         </div>
     </main>
 
@@ -60,6 +54,8 @@
 </script>
 <script src="{% static 'game/js/main.js' %}"></script>
 <script src="{% static 'game/js/clicker.js' %}"></script>
+<script src="{% static 'game/js/quest.js' %}"></script>
+<script src="{% static 'game/js/tasks.js' %}"></script>
 
 </body>
 </html>
