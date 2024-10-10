@@ -20,10 +20,7 @@ function initTasksJS() {
                 fetch(`tasks/filter/?category=${categoryId}`)
                     .then(response => response.text())
                     .then(html => {
-                        // Очищаем текущий список задач и вставляем новый HTML от сервера
                         newBlock.querySelector('#task-list').innerHTML = html;
-
-                        // Скрываем блок категорий и показываем блок задач
                         toggleVisibility(newBlock, categoriesDiv);
                     })
                     .catch(error => {

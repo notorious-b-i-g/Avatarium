@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
+from .forms import TaskForm
 
 
 def game(request):
@@ -49,6 +50,12 @@ def tasks(request):
         'user': user,
         'task_categories': task_categories
     })
+
+def create_task(request):
+    form = TaskForm()
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return render(request, 'game/task_form_partial.html', {'form': form})
+    return render(request, 'game/create_task.html', {'form': form})
 
 
 def update_balance(request):

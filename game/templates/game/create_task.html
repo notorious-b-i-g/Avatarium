@@ -1,0 +1,17 @@
+<!-- templates/game/create_task.html -->
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать новую игру</title>
+    <link rel="stylesheet" href="{% static 'game/css/main.css' %}">
+</head>
+<body>
+    <h1>Создать новую игру</h1>
+        <form method="post" id="create-task-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+            <button type="submit">Создать</button>
+        </form>
+</body>
+</html>

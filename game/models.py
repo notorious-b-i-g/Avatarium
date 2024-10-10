@@ -11,6 +11,7 @@ class TaskCategory(models.Model):
 class Task(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
+    user_comment = models.TextField(blank=True , null=True)
     cost = models.IntegerField()
     category = models.ForeignKey(TaskCategory, on_delete=models.CASCADE, blank=True, null=True)
 
