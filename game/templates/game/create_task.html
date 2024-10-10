@@ -1,17 +1,21 @@
-<!-- templates/game/create_task.html -->
 {% load static %}
-<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Создать новую игру</title>
     <link rel="stylesheet" href="{% static 'game/css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'game/css/task_create.css' %}">
+
+
 </head>
-<body>
-    <h1>Создать новую игру</h1>
-        <form method="post" id="create-task-form">
-                {% csrf_token %}
-                {{ form.as_p }}
-            <button type="submit">Создать</button>
-        </form>
-</body>
-</html>
+<img id="background-img3" src="{% static 'game/img/background_0.svg' %}" class="background-image" alt="Background">
+<p class="task-create-title">Создать новую игру</p>
+
+<div id="task-create-menu" class="task-create-menu">
+    <form method="post" id="create-task-form">
+            {% csrf_token %}
+            {{ form.title }}<br>
+            {{ form.description }}<br>
+            {{ form.cost }}<br>
+
+        <span>{{ error }}</span>
+        <button type="submit" class="create-task-submit">Создать</button>
+    </form>
+</div>

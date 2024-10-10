@@ -22,6 +22,8 @@ function initTasksJS() {
                     .then(html => {
                         newBlock.querySelector('#task-list').innerHTML = html;
                         toggleVisibility(newBlock, categoriesDiv);
+                        initTasksCreateJS(); // Вызов после обновления DOM
+
                     })
                     .catch(error => {
                         console.error("Ошибка при получении задач: ", error);
@@ -31,4 +33,49 @@ function initTasksJS() {
     } else {
         console.error('Элементы не найдены, скрипт initTasksJS не может быть выполнен.');
     }
+
+}
+function initTasksCreateJS(){
+    const TaskCreatePanel = document.getElementById('task-create-panel');
+    console.log(TaskCreatePanel);
+    TaskCreatePanel.addEventListener('click', function(e) {
+    e.preventDefault(); // Предотвращаем обычный переход по ссылке
+    console.log(1)
+    fetch('tasks/create/')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('content').innerHTML = html;
+            initTaskFormJS(); // Вызов функции инициализации формы сразу после загрузки HTML
+
+        })
+        .catch(error => {
+            console.error("Ошибка при загрузке формы: ", error);
+        });
+})
+
+}
+
+function initTaskFormJS(){
+    var form = document.getElementById('create-task-form');
+    console.log(form)
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();  // Отменяем стандартное поведение формы
+        var formData = new FormData(form);
+
+        fetch('tasks/create/', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Задача создана успешно');
+                // Опционально: обновите UI или перенаправьте пользователя
+            } else {
+                console.error('Ошибка: ' + data.error);
+            }
+        })
+        .catch(error => console.error('Ошибка AJAX запроса: ', error));
+    });
+
 }

@@ -40,7 +40,7 @@ def filter_tasks(request):
         tasks = user.tasks.filter(category__category_name=category_name)
     else:
         tasks = user.tasks.all()
-    return render(request, 'game/tasks_list_partial.html', {'tasks': tasks})
+    return render(request, 'game/tasks_list_partial.html', {'tasks': tasks, 'task_category': category_name})
 
 def tasks(request):
     user = Users.objects.get(id=1)  # Пример получения пользователя, здесь лучше использовать request.user
@@ -51,10 +51,18 @@ def tasks(request):
         'task_categories': task_categories
     })
 
+
+
 def create_task(request):
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'error': 'Неверное заполнение'})
+
     form = TaskForm()
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        return render(request, 'game/task_form_partial.html', {'form': form})
     return render(request, 'game/create_task.html', {'form': form})
 
 

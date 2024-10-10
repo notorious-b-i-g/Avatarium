@@ -9,24 +9,11 @@
     <p>Нет доступных задач для данной категории</p>
 {% endfor %}
 
-<a href="{% url 'create_task' %}">
-    <div id="task-create-panel {{ category.category_name }}" class="task-create-panel">
-        <img src="{% static 'game/img/tasks/logos_mini/family.svg' %}" class="task-mini-logo" >
-        <p class="task-create-text">Создать новую игру</p>
-        <img src="{% static 'game/img/tasks/plus.svg' %}" class="plus-logo">
-    </div>
-</a>
+<div id="task-create-panel" class="task-create-panel {{ task_category }}">
+    <img src="{% static 'game/img/tasks/logos_mini/family.svg' %}" class="task-mini-logo" >
+    <p class="task-create-text">Создать новую игру</p>
+    <img src="{% static 'game/img/tasks/plus.svg' %}" class="plus-logo">
+</div>
 
-<div id="create-task-form-container"></div>
-<script>function loadCreateTaskForm() {
-    fetch("{% url 'create_task' %}")
-        .then(response => response.text())
-        .then(html => {
-            // Найдите контейнер на странице и вставьте полученный HTML
-            document.getElementById('create-task-form-container').innerHTML = html;
-        })
-        .catch(error => {
-            console.error('Ошибка при загрузке формы:', error);
-        });
-}</script>
+
 

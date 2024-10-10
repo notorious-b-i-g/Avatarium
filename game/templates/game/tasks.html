@@ -1,4 +1,8 @@
 {% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'game/css/main.css' %}">
+
+</head>
 <img id="background-img2" src="{% static 'game/img/background_0.svg' %}" class="background-image" alt="Background">
 <p class="category-game-title">Игры</p>
 <div id="categories-menu-div" class="categories-menu-div">
@@ -17,9 +21,8 @@
 
 <div id="task-menu-div" class="task-menu-div hidden" >
     <div id="task-list" class="task-list">
-    </div>
+</div>
 
 </div>
-<script src="{% static 'game/js/tasks.js' %}"></script>
 
 
