@@ -1,0 +1,17 @@
+{% load static %}
+
+{% for task in tasks %}
+    <div class="task-item">
+        <h3 class="task-title">{{ task.title }}</h3>
+        <p class="task-description">{{ task.description }}</p>
+    </div>
+{% empty %}
+    <p>Нет доступных задач для данной категории</p>
+{% endfor %}
+
+<div id="task-create-panel" class="task-create-panel">
+    <img src="{% static 'game/img/tasks/logos_mini/family.svg' %}" class="task-mini-logo">
+    <p class="task-create-text" >Создать новую игру</p>
+    <img src="{% static 'game/img/tasks/plus.svg' %}" class="plus-logo">
+
+</div>

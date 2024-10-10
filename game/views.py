@@ -6,9 +6,6 @@ from .models import *
 
 def game(request):
     user = Users.objects.get(id=1)
-
-
-
     # Передаем начальный баланс пользователя и квесты в шаблон
     return render(request, 'game/layout.html', {
 
@@ -17,9 +14,9 @@ def game(request):
 
 def index(request):
     user = Users.objects.get(id=1)  # Предполагается, что вы знаете ID текущего пользователя
-
     return render(request, 'game/index.html', {'user': user, 'initial_balance': user.balance
-})
+                                               })
+
 
 def quest(request):
     user = Users.objects.get(id=1)  # Предполагается, что вы знаете ID текущего пользователя
@@ -29,12 +26,20 @@ def quest(request):
     completed_quests = user_quests.filter(completed=True)
     incomplete_quests = user_quests.filter(completed=False)
     top_quests = user_quests.filter(quest__top=True, completed=False)  # Только топ квесты, которые еще не выполнены
-    return render(request, 'game/quest.html', {        'completed_quests': completed_quests,
-        'incomplete_quests': incomplete_quests,
-        'top_quests': top_quests,})
+    return render(request, 'game/quest.html', {'completed_quests': completed_quests,
+                                               'incomplete_quests': incomplete_quests,
+                                               'top_quests': top_quests, })
 
-from django.shortcuts import render
-from .models import Users, TaskCategory
+
+def filter_tasks(request):
+    category_name = request.GET.get('category')
+    user = Users.objects.get(id=1)  # Предполагается, что вы знаете ID текущего пользователя
+
+    if category_name:
+        tasks = user.tasks.filter(category__category_name=category_name)
+    else:
+        tasks = user.tasks.all()
+    return render(request, 'game/tasks_list_partial.html', {'tasks': tasks})
 
 def tasks(request):
     user = Users.objects.get(id=1)  # Пример получения пользователя, здесь лучше использовать request.user
@@ -44,6 +49,7 @@ def tasks(request):
         'user': user,
         'task_categories': task_categories
     })
+
 
 def update_balance(request):
     if request.method == 'POST':

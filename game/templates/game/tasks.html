@@ -1,12 +1,26 @@
 {% load static %}
 <img id="background-img2" src="{% static 'game/img/background_0.svg' %}" class="background-image" alt="Background">
 <p class="category-game-title">Игры</p>
-<p class="categories">Категории</p>
+<div id="categories-menu-div" class="categories-menu-div">
+    <p class="categories">Категории</p>
 
-<div class="categories-div">
-    {% for category in task_categories %}
-        <div class="categories-content">
-            <img src="{{ category.logo.url }}" alt="{{ category.category_name }}" class="task-logo">
-        </div>
-    {% endfor %}
+    <div class="categories-div" id= "categories-div">
+        {% for category in task_categories %}
+            <div class="categories-content">
+                <button  class="category-button" id="{{ category.category_name }}">
+                    <img src="{{ category.logo.url }}" alt="{{ category.category_name }}" class="task-logo">
+                </button>
+            </div>
+        {% endfor %}
+    </div>
 </div>
+
+<div id="task-menu-div" class="task-menu-div hidden" >
+    <div id="task-list" class="task-list">
+
+    </div>
+
+</div>
+<script src="{% static 'game/js/tasks.js' %}"></script>
+
+

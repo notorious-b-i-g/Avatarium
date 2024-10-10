@@ -14,7 +14,7 @@
             {% else %}
                 <p class="quest-disc-no-image">{{ user_quest.quest.title }}</p>
             {% endif %}
-            <p class="quest-price">{{ user_quest.quest.cost }}</p>
+            <p class="quest-price">+{{ user_quest.quest.cost }}</p>
             <img src="{% static 'game/img/quests/goto.svg' %}" class="goto-image">
         </div>
         {% endif %}
@@ -32,7 +32,7 @@
             {% else %}
                 <p class="quest-disc-no-image">{{ user_quest.quest.title }}</p>
             {% endif %}
-            <p class="quest-price">{{ user_quest.quest.cost }}</p>
+            <p class="quest-price">+{{ user_quest.quest.cost }}</p>
             <img src="{% static 'game/img/quests/goto.svg' %}" class="goto-image">
         </div>
         {% endif %}

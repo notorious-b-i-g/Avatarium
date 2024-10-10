@@ -14,6 +14,18 @@
     color: #FFFFFF;
 }
 
+.categories-menu-div{
+
+    width: 100%; /* Устанавливаем ширину контейнера */
+    height: 100%;
+    box-sizing: border-box; /* Включаем внутренние отступы в расчёт ширины */
+
+    position:absolute;
+    top: 0%;
+    left: 50%;
+    transform : translateX(-50%);
+}
+
 .categories{
     position: absolute;
     width: 182px;
@@ -54,10 +66,62 @@
     justify-content: center; /* Центрирование содержимого по горизонтали */
     align-items: center; /* Центрирование содержимого по вертикали */
 }
-
+.category-button{
+    background: transparent;
+    border: none;
+}
 /* Логотип внутри блока категории */
 .task-logo {
     max-width: 100%; /* Логотип занимает всю ширину блока */
     height: auto; /* Высота автоматически подстраивается для сохранения пропорций */
 }
 
+.task-menu-div{
+    position: absolute;
+    width: 90vw; /* Ширина 90% от ширины видимой области окна */
+    height: 70vh;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%)
+}
+
+.task-create-panel {
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; /* Ширина 100% от родительского контейнера */
+    height: 50px;
+    background: rgba(227, 230, 237, 0.5); /* Прозрачный фон через rgba */
+    border: 0.7px solid rgba(255, 255, 255, 0.25); /* Полупрозрачная граница */
+    background-size: cover;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;     /* Центрирование по вертикали */
+    padding: 10px;
+    gap: 10px;
+}
+
+
+
+.task-create-text {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+
+}
+
+.plus-logo {
+    margin-left: auto; /* Отталкивает элемент от остальных к правому краю */
+    padding-right: 0; /* Если padding-right больше не нужен, можно обнулить */
+}
+
+.hidden {
+    display: none;
+}

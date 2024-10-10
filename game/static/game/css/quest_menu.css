@@ -81,7 +81,7 @@
     flex-direction: row;
     align-items: center;
     width: 100%; /* Ширина 100% от родительского контейнера */
-    background: url("../img/quests/incomplete_quest.svg") no-repeat center center;
+    background: #ffffff;
     background-size: cover;
     border-radius: 22px;
     overflow: hidden;
@@ -165,7 +165,7 @@
 }
 
 .completed {
-    background: url("../img/quests/complete_quest.svg") no-repeat center center;
+    background: linear-gradient(45deg, #2875BB, #0F80AB);
     background-size: cover;
 
 }
