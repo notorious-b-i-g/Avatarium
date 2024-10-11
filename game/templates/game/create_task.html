@@ -10,10 +10,13 @@
 
 <div id="task-create-menu" class="task-create-menu">
     <form method="post" id="create-task-form">
-            {% csrf_token %}
-            {{ form.title }}<br>
-            {{ form.description }}<br>
-            {{ form.cost }}<br>
+        {% csrf_token %}
+        {{ form.title }}<br>
+        {{ form.description }}<br>
+        {{ form.cost }}<br>
+
+        <!-- Скрытое поле для task_category -->
+        <input type="hidden" name="task_category" value="{{ task_category }}">
 
         <span>{{ error }}</span>
         <button type="submit" class="create-task-submit">Создать</button>

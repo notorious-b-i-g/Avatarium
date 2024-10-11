@@ -35,25 +35,40 @@ function initTasksJS() {
     }
 
 }
-function initTasksCreateJS(){
-    const TaskCreatePanel = document.getElementById('task-create-panel');
-    console.log(TaskCreatePanel);
-    TaskCreatePanel.addEventListener('click', function(e) {
-    e.preventDefault(); // Предотвращаем обычный переход по ссылке
-    console.log(1)
-    fetch('tasks/create/')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('content').innerHTML = html;
-            initTaskFormJS(); // Вызов функции инициализации формы сразу после загрузки HTML
+function initTasksCreateJS() {
+    const taskCreatePanel = document.getElementById('task-create-panel');
+    if (taskCreatePanel) {
+        taskCreatePanel.addEventListener('click', function(e) {
+            e.preventDefault(); // Предотвращаем стандартное поведение
 
-        })
-        .catch(error => {
-            console.error("Ошибка при загрузке формы: ", error);
+            // Извлекаем task_category из класса элемента
+            let classList = taskCreatePanel.classList;
+            let taskCategory = null;
+            for (let i = 0; i < classList.length; i++) {
+                if (classList[i] !== 'task-create-panel') {
+                    taskCategory = classList[i];
+                    break;
+                }
+            }
+            console.log('taskCategory:', taskCategory);
+
+            // Отправляем task_category в запросе на сервер
+            fetch('tasks/create/?task_category=' + encodeURIComponent(taskCategory))
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('content').innerHTML = html;
+                    initTaskFormJS(); // Инициализируем форму после загрузки
+                })
+                .catch(error => {
+                    console.error("Ошибка при загрузке формы: ", error);
+                });
         });
-})
-
+    } else {
+        console.log("Элемент для создания задачи не найден");
+    }
 }
+
+
 
 function initTaskFormJS(){
     var form = document.getElementById('create-task-form');

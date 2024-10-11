@@ -52,18 +52,26 @@ def tasks(request):
     })
 
 
-
 def create_task(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
-            form.save()
+            task = form.save(commit=False)
+            # Получаем task_category из POST данных
+            task_category = request.POST.get('task_category')
+            if task_category:
+                # Устанавливаем категорию задачи
+                category = TaskCategory.objects.get(category_name=task_category)
+                task.category = category
+            task.save()
             return JsonResponse({'success': True})
         else:
-            return JsonResponse({'success': False, 'error': 'Неверное заполнение'})
+            return JsonResponse({'success': False, 'errors': form.errors})
+    else:
+        task_category = request.GET.get('task_category', None)
+        form = TaskForm()
+        return render(request, 'game/create_task.html', {'form': form, 'task_category': task_category})
 
-    form = TaskForm()
-    return render(request, 'game/create_task.html', {'form': form})
 
 
 def update_balance(request):
