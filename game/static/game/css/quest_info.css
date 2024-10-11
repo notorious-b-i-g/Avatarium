@@ -1,0 +1,83 @@
+.quest-info-div {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 60vh;
+    width: 90vw;
+    background: #E9EBF0;
+    mix-blend-mode: normal;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column; /* Расположить элементы вертикально */
+    gap: 1vh;
+    overflow-y: auto; /* Добавляем вертикальную прокрутку */
+    padding: 7%; /* Отступы внутри контейнера */
+}
+
+
+.quest-title {
+    font-size: 5vw;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    /* or 114% */
+    letter-spacing: -0.01em;
+
+    color: #67AACF;
+
+    }
+
+.quest-disc {
+    font-size: 14px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    /* or 114% */
+    letter-spacing: -0.01em;
+
+    color: #41435B;
+}
+
+.quest-sub-disc {
+    font-size: 14px;
+    text-indent: 20px; /* Добавляем красную строку на 20 пикселей */
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 14px;
+    /* or 117% */
+    text-align: center;
+    letter-spacing: -0.01em;
+    color: #67A3CF;
+
+}
+
+.complete-button {
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+    width: 40vw;
+    min-height: 40px;
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center; /* Центрирование по вертикали */
+    background: linear-gradient(90deg, #81CACF 0%, #0AB0D7 100%);
+    mix-blend-mode: normal;
+    border-radius: 20px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 15px;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+
+
+}
+
+
+
+

@@ -1,5 +1,8 @@
 {% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'game/css/task_list.css' %}">
 
+</head>
 {% for task in tasks %}
     <div class="task-item">
         <h3 class="task-title">{{ task.title }}</h3>
@@ -10,7 +13,8 @@
 {% endfor %}
 
 <div id="task-create-panel" class="task-create-panel {{ task_category }}" data-category="{{ task_category }}">
-    <img src="{% static 'game/img/tasks/logos_mini/family.svg' %}" class="task-mini-logo" >
+    <img src="{{ category_logo.url }}" class="task-mini-logo">
+
     <p class="task-create-text">Создать новую игру</p>
     <img src="{% static 'game/img/tasks/plus.svg' %}" class="plus-logo">
 </div>

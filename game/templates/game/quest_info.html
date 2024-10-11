@@ -1,9 +1,0 @@
-{% load static %}
-
-<img src="{% static 'game/img/background_0.svg' %}" class="background-image" alt="Background">
-
-<div class="quest-info">
-    <img src="{{ user_quest.quest.logo.url }}" alt="{{ user_quest.quest.title }}" class="quest-logo">
-    <p class="quest-disc">{{ user_quest.quest.title }}</p>
-    <img src="{% static 'game/img/quests/goto.svg' %}" class="goto-image">
-</div>

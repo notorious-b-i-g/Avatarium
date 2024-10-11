@@ -1,6 +1,9 @@
 <!-- index.html -->
 {% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'game/css/game_screen.css' %}">
 
+</head>
 <div id="clicker-container"
      data-update-balance-url="{% url 'update_balance' %}"
      data-csrf-token="{{ csrf_token }}"

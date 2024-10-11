@@ -43,14 +43,7 @@ function initTasksCreateJS() {
 
             // Извлекаем task_category из класса элемента
             let classList = taskCreatePanel.classList;
-            let taskCategory = null;
-            for (let i = 0; i < classList.length; i++) {
-                if (classList[i] !== 'task-create-panel') {
-                    taskCategory = classList[i];
-                    break;
-                }
-            }
-            console.log('taskCategory:', taskCategory);
+            let taskCategory = taskCreatePanel.classList[1];
 
             // Отправляем task_category в запросе на сервер
             fetch('tasks/create/?task_category=' + encodeURIComponent(taskCategory))

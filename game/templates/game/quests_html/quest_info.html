@@ -1,0 +1,15 @@
+{% load static %}
+
+<img src="{% static 'game/img/background_0.svg' %}" class="background-image" alt="Background">
+<head>
+    <link rel="stylesheet" href="{% static 'game/css/quest_info.css' %}">
+
+</head>
+
+<div class="quest-info-div">
+    <p class="quest-title">{{ title }}</p>
+    <p class="quest-disc">{{ description }}</p>
+    <p class="quest-sub-disc">{{ sub_description }}</p>
+    <img src="{{ image.url }}" class="quest-image">
+    <p class="complete-button">Готово (+{{ price }})</p>
+</div>

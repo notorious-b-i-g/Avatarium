@@ -27,9 +27,28 @@ def quest(request):
     completed_quests = user_quests.filter(completed=True)
     incomplete_quests = user_quests.filter(completed=False)
     top_quests = user_quests.filter(quest__top=True, completed=False)  # Только топ квесты, которые еще не выполнены
-    return render(request, 'game/quest.html', {'completed_quests': completed_quests,
-                                               'incomplete_quests': incomplete_quests,
-                                               'top_quests': top_quests, })
+    return render(request, 'game/quests_html/quest.html', {'completed_quests': completed_quests,
+                                                           'incomplete_quests': incomplete_quests,
+                                                           'top_quests': top_quests, })
+
+
+def quest_info(request):
+    quest_id = request.GET.get('quest_id')
+    quest = Quest.objects.get(id=quest_id)  # Получаем квест по ID
+    title = quest.title
+    description = quest.description
+    sub_description = quest.sub_description
+    image = quest.info_image
+    price = quest.cost
+    if image:
+        image_send = image
+    else:
+        image_send = ''
+    return render(request, 'game/quests_html/quest_info.html', {'title': title,
+                                                                'description': description,
+                                                                'sub_description': sub_description,
+                                                                'image': image_send,
+                                                                'price': price})
 
 
 def filter_tasks(request):
@@ -38,15 +57,24 @@ def filter_tasks(request):
 
     if category_name:
         tasks = user.tasks.filter(category__category_name=category_name)
+        # Получаем логотип категории напрямую из TaskCategories
+        category_logo = TaskCategory.objects.filter(category_name=category_name).first().logo
     else:
         tasks = user.tasks.all()
-    return render(request, 'game/tasks_list_partial.html', {'tasks': tasks, 'task_category': category_name})
+        category_logo = None  # Логотип выводим только при выбранной категории
+
+    return render(request, 'game/tasks_html/tasks_list_partial.html', {
+        'tasks': tasks,
+        'task_category': category_name,
+        'category_logo': category_logo
+    })
+
 
 def tasks(request):
     user = Users.objects.get(id=1)  # Пример получения пользователя, здесь лучше использовать request.user
     task_categories = TaskCategory.objects.all()  # Получение всех категорий задач
 
-    return render(request, 'game/tasks.html', {
+    return render(request, 'game/tasks_html/tasks.html', {
         'user': user,
         'task_categories': task_categories
     })
@@ -70,8 +98,7 @@ def create_task(request):
     else:
         task_category = request.GET.get('task_category', None)
         form = TaskForm()
-        return render(request, 'game/create_task.html', {'form': form, 'task_category': task_category})
-
+        return render(request, 'game/tasks_html/create_task.html', {'form': form, 'task_category': task_category})
 
 
 def update_balance(request):

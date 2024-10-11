@@ -1,5 +1,8 @@
 {% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'game/css/quest_menu.css' %}">
 
+</head>
 <img id="background-img2" src="{% static 'game/img/background_0.svg' %}" class="background-image" alt="Background">
 <p class="quest-title">Квесты</p>
 <p class="quest-top">Топ-квесты</p>
@@ -7,7 +10,7 @@
 <div class="top-quests-div">
     {% for user_quest in incomplete_quests %}
         {% if user_quest.quest.top %}
-        <div class="quest-content">
+        <div class="quest-content" data-quest-id="{{ user_quest.quest.id }}">
             {% if user_quest.quest.logo %}
                 <img src="{{ user_quest.quest.logo.url }}" alt="{{ user_quest.quest.title }}" class="quest-logo">
                 <p class="quest-disc">{{ user_quest.quest.title }}</p>
@@ -25,7 +28,7 @@
 <div class="common-quests-div">
     {% for user_quest in incomplete_quests %}
         {% if not user_quest.quest.top %}
-        <div class="quest-content">
+        <div class="quest-content" data-quest-id="{{ user_quest.quest.id }}">
             {% if user_quest.quest.logo %}
                 <img src="{{ user_quest.quest.logo.url }}" alt="{{ user_quest.quest.title }}" class="quest-logo">
                 <p class="quest-disc">{{ user_quest.quest.title }}</p>
@@ -41,7 +44,7 @@
 
 <div class="completed-quests-div hidden">
     {% for user_quest in completed_quests %}
-        <div class="quest-content completed">
+        <div class="quest-content completed" data-quest-id="{{ user_quest.quest.id }}">
             {% if user_quest.quest.logo %}
                 <img src="{{ user_quest.quest.logo.url }}" alt="{{ user_quest.quest.title }}" class="quest-logo">
                 <p class="quest-disc text-completed">{{ user_quest.quest.title }}</p>

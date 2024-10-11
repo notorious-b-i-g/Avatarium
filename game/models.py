@@ -3,6 +3,7 @@ from django.db import models
 
 class TaskCategory(models.Model):
     category_name = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, blank=True, null=True)
     logo = models.ImageField(upload_to='tasks/logos', blank=True, null=True)
     def __str__(self):
         return self.category_name
@@ -22,6 +23,7 @@ class Task(models.Model):
 class Quest(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
+    sub_description = models.TextField(blank=True, null=True)
     top = models.BooleanField(default=False)
     cost = models.IntegerField()
     logo = models.ImageField(upload_to='quests/logos/', blank=True, null=True)  # Поле для логотипа

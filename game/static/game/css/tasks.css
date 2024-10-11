@@ -28,10 +28,8 @@
 
 .categories{
     position: absolute;
-    width: 182px;
     left: calc(50% - 182px/2 - 62px);
     top: 16.09%;
-    bottom: 81.12%;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 800;
@@ -42,40 +40,66 @@
 }
 /* Контейнер для категорий */
 .categories-div {
-    display: flex; /* Используем Flexbox для выравнивания элементов */
+    display: flex; /* Flexbox для выравнивания элементов */
     flex-wrap: wrap; /* Позволяем элементам переноситься на новую строку */
     justify-content: center; /* Центрирование элементов по горизонтали */
-    gap: 20px; /* Задаём расстояние между элементами */
-    padding: 20px; /* Внутренние отступы */
-    width: 100%; /* Устанавливаем ширину контейнера */
+    row-gap: 1vh; /* Вертикальные промежутки между строками */
+    column-gap: 5vw; /* Горизонтальные промежутки между элементами */
+    width: 80vw;
     box-sizing: border-box; /* Включаем внутренние отступы в расчёт ширины */
-    max-height: 800px;
+    height: 65vh;
     overflow-y: auto; /* Вертикальная прокрутка */
 
-    position:absolute;
+    position: absolute;
     top: 20%;
     left: 50%;
-    transform : translateX(-50%);
+    transform: translateX(-50%);
 }
 
-/* Элементы категории */
+
 .categories-content {
-    width: 120px; /* Фиксированная ширина блока */
-    height: 120px; /* Фиксированная высота блока */
-    display: flex; /* Flexbox для вертикального центрирования */
-    justify-content: center; /* Центрирование содержимого по горизонтали */
-    align-items: center; /* Центрирование содержимого по вертикали */
+    width: 15vh; /* Фиксированная ширина блока */
+    height: 15vh; /* Фиксированная высота блока */
+    display: flex;
+    flex-direction: column; /* Элементы располагаются вертикально */
+    justify-content: center; /* Центрирование содержимого по вертикали */
+    align-items: center; /* Центрирование содержимого по горизонтали */
 }
-.category-button{
-    background: transparent;
+
+.category-button {
+    width: 100%;    /* Полностью заполняет ширину родительского контейнера */
+    height: 100%;   /* Полностью заполняет высоту родительского контейнера */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 18px;
     border: none;
+    display: flex; /* Используем flex для центрирования логотипа внутри кнопки */
+    justify-content: center; /* Центрируем логотип горизонтально */
+    align-items: center;     /* Центрируем логотип вертикально */
+    padding: 0; /* Убираем отступы */
+    flex-shrink: 0; /* Запрещаем сжимать кнопку */
+
 }
-/* Логотип внутри блока категории */
+
 .task-logo {
     max-width: 100%; /* Логотип занимает всю ширину блока */
     height: auto; /* Высота автоматически подстраивается для сохранения пропорций */
+    opacity: 0.4;
 }
 
+.category-name {
+    margin-top: -25%; /* Отступ сверху для текста */
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 3vw;
+    line-height: 13px;
+    text-align: center;
+    letter-spacing: -0.01em;
+
+    color: #FFFFFF;
+
+}
 .task-menu-div{
     position: absolute;
     width: 90vw; /* Ширина 90% от ширины видимой области окна */
@@ -124,4 +148,10 @@
 
 .hidden {
     display: none;
+}
+
+.task-mini-logo {
+    width: 22px;
+    height: 22px;
+    margin-left: 5px;
 }

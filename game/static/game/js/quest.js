@@ -1,4 +1,3 @@
-
 // quest.js
 function initQuestJS() {
     // Функция для переключения активного класса
@@ -33,5 +32,33 @@ function initQuestJS() {
         });
     } else {
         console.error('Элементы не найдены, скрипт initQuestJS не может быть выполнен.');
+    }
+}
+function initSeeQuestJS() {
+    const allQuests = document.querySelectorAll('.quest-content'); // Находим все элементы с классом 'quest-content'
+
+    if (allQuests.length > 0) {
+        allQuests.forEach(quest => {
+            quest.addEventListener('click', function() {
+                // Извлекаем ID квеста из атрибута data-quest-id
+                let questId = quest.getAttribute('data-quest-id');
+
+                if (questId) {
+                    // Отправляем запрос с ID квеста на сервер
+                    fetch('quests/see_quest/?quest_id=' + encodeURIComponent(questId))
+                        .then(response => response.text())
+                        .then(html => {
+                            document.getElementById('content').innerHTML = html; // Обновляем содержимое страницы
+                        })
+                        .catch(error => {
+                            console.error("Ошибка при загрузке формы: ", error);
+                        });
+                } else {
+                    console.error("Не удалось извлечь ID квеста.");
+                }
+            });
+        });
+    } else {
+        console.log("Элементы квестов не найдены.");
     }
 }

@@ -19,6 +19,7 @@ function loadContent(tab) {
             // Инициализируем скрипты для загруженного контента
             if (page === 'quest') {
                 initQuestJS();
+                initSeeQuestJS();
             } else if(page === 'tasks') {
                 initTasksJS();
             }
@@ -29,5 +30,5 @@ function loadContent(tab) {
 
 // Загрузка контента при загрузке страницы
 window.onload = function() {
-    loadContent(2);
+    loadContent(1);
 };

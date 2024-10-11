@@ -10,5 +10,5 @@ urlpatterns = [
     path('tasks', views.tasks, name='game-tasks'),
     path('tasks/filter/', views.filter_tasks, name='filter_tasks'),
     path('tasks/create/', views.create_task, name='create_task'),
-
+    path('quests/see_quest/', views.quest_info, name='see_quest')
 ]
