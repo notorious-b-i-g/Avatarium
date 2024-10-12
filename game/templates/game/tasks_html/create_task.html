@@ -14,11 +14,15 @@
 
         <form method="post" id="create-task-form">
             {% csrf_token %}
-            {{ form.title }}<br>
-            {{ form.description }}<br>
-            {{ form.cost }}<br>
+            {{ form_near.title }}<br>
+            {{ form_near.description }}<br>
+            {{ form_near.cost }}<br>
+            {{ form_near.image }}<br>
+
+            <button type="button" id="upload-image-button" class="upload-image-button">Загрузить изображение</button>
 
             <!-- Скрытое поле для task_category -->
+
             <input type="hidden" name="task_category" value="{{ task_category }}">
         </form>
 

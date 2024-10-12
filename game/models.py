@@ -15,6 +15,7 @@ class Task(models.Model):
     user_comment = models.TextField(blank=True , null=True)
     cost = models.IntegerField()
     category = models.ForeignKey(TaskCategory, on_delete=models.CASCADE, blank=True, null=True)
+    image = models.ImageField(upload_to='tasks/images/', blank=True, null=True)  # Новое поле
 
     def __str__(self):
         return self.title
