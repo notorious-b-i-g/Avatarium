@@ -9,16 +9,21 @@
 <p class="task-create-title">Создать новую игру</p>
 
 <div id="task-create-menu" class="task-create-menu">
-    <form method="post" id="create-task-form">
-        {% csrf_token %}
-        {{ form.title }}<br>
-        {{ form.description }}<br>
-        {{ form.cost }}<br>
+    <div class="form-inputs">
+        <p class="near-game-writing">Ближайшая игра</p>
 
-        <!-- Скрытое поле для task_category -->
-        <input type="hidden" name="task_category" value="{{ task_category }}">
+        <form method="post" id="create-task-form">
+            {% csrf_token %}
+            {{ form.title }}<br>
+            {{ form.description }}<br>
+            {{ form.cost }}<br>
 
-        <span>{{ error }}</span>
-        <button type="submit" class="create-task-submit">Создать</button>
-    </form>
+            <!-- Скрытое поле для task_category -->
+            <input type="hidden" name="task_category" value="{{ task_category }}">
+        </form>
+
+    </div>
+
+    <!-- Кнопка размещена вне формы с уникальным ID -->
+    <button type="button" id="create-task-button" class="create-task-submit">Создать</button>
 </div>

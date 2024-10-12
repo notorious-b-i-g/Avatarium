@@ -65,25 +65,44 @@ function initTasksCreateJS() {
 
 function initTaskFormJS(){
     var form = document.getElementById('create-task-form');
-    console.log(form)
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();  // Отменяем стандартное поведение формы
+    var submitButton = document.getElementById('create-task-button');
+
+    if (!form || !submitButton) {
+        console.error('Форма или кнопка отправки не найдены.');
+        return;
+    }
+
+    submitButton.addEventListener('click', function(e) {
+        e.preventDefault();  // Предотвращаем стандартное поведение кнопки
+
         var formData = new FormData(form);
 
         fetch('tasks/create/', {
             method: 'POST',
-            body: formData
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest' // Для Django, чтобы определить AJAX запрос
+            }
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Сетевой ответ не был ok');
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.success) {
                 console.log('Задача создана успешно');
                 // Опционально: обновите UI или перенаправьте пользователя
+                // Например, очистить форму:
+                form.reset();
             } else {
                 console.error('Ошибка: ' + data.error);
+                // Опционально: отобразите ошибку пользователю
             }
         })
         .catch(error => console.error('Ошибка AJAX запроса: ', error));
     });
-
 }
+
+// Инициализируем функцию после загрузки DOM

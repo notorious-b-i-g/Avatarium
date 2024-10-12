@@ -104,5 +104,5 @@ function initBalanceJS() {
 
 // Загрузка контента при загрузке страницы
 window.onload = function() {
-    loadContent(1);
+    loadContent(2);
 };

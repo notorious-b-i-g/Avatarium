@@ -1,6 +1,8 @@
-.task-create-menu{
+.task-create-menu {
+    height: 100%;
+    width: 100%;
     position: absolute;
-    top: 15%;
+    top: 20%;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -24,4 +26,70 @@
     color: #FFFFFF;
 
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.near-game-writing{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 26px;
+    letter-spacing: -0.01em;
+    color: #0AB0D7;
+    margin-top: 15px;
+}
+
+.form-inputs {
+    background: #FFFFFF;
+    width: 85%;
+    height: 35vh;
+    border-radius: 20px 0px 0px 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-left: 15px;
+    /* Ограничение содержимого по высоте и ширине */
+    max-width: 85%;
+    max-height: 35vh;
+    overflow: auto; /* Добавляем прокрутку, если содержимое выходит за пределы */
+}
+
+
+.task-title-input, .task-desc-input, .task-cost-input{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    margin-top: 8px;
+    width: 90%;
+}
+
+.task-title-input::placeholder {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 4vw;
+    line-height: 17px;
+    letter-spacing: -0.01em;
+    color: #4E6A83;
+
+}
+
+/* Введите текст описания */
+.task-desc-input::placeholder {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.01em;
+    color: #41576B;
+}
+
+.create-task-submit {
+    position: absolute;
+    background: transparent;
+    top: 38%;
+    width: 50%;
+    transform: translateX(50%);
+    border: none;
 }
