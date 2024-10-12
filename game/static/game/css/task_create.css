@@ -93,3 +93,12 @@
     transform: translateX(50%);
     border: none;
 }
+.task-img-input{
+    display: none;
+}
+.upload-image-button{
+
+    position: fixed;
+    top: 30%;
+    transform: translateX(0%);
+    }

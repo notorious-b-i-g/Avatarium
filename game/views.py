@@ -97,10 +97,8 @@ def tasks(request):
 def create_task(request):
     if request.method == 'POST':
         form_near = TaskFormNear(request.POST, request.FILES)
-        form_far = TaskFormFar(request.POST)
         if form_near.is_valid():
             task_near = form_near.save(commit=False)
-
             # Получаем task_category из POST данных
             task_category = request.POST.get('task_category')
             if task_category:
