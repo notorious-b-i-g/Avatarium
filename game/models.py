@@ -38,7 +38,7 @@ class Users(models.Model):
     reg_time = models.DateTimeField()
     balance = models.IntegerField()
     tasks = models.ManyToManyField(Task, blank=True)
-    avatarka = models.ImageField(upload_to='avatars', default='avatars/base_ava.svg')
+    avatarka = models.ImageField(upload_to='avatars', default='avatars/def_ava.png')
 
     def __str__(self):
         return self.name

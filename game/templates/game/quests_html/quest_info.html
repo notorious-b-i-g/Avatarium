@@ -1,15 +1,27 @@
 {% load static %}
 
-<img src="{% static 'game/img/background_0.svg' %}" class="background-image" alt="Background">
-<head>
-    <link rel="stylesheet" href="{% static 'game/css/quest_info.css' %}">
 
-</head>
+
+<div class="avatar-wrapper">
+    <img src="{{ user_avatar }}" alt="User Avatar" class="user-avatar">
+</div>
+
+<img src="{% static 'game/img/quests/dollar.svg' %}" class="dollar-img">
+<div class="balance">
+    <p class="balance-title">Баланс:</p>
+    <p class="balance-amount">2000 очков</p>
+</div>
 
 <div class="quest-info-div">
+    <img src="{% static 'game/img/quests/goback.svg' %}" class="goback-button" id="goback-button">
     <p class="quest-title">{{ title }}</p>
-    <p class="quest-disc">{{ description }}</p>
-    <p class="quest-sub-disc">{{ sub_description }}</p>
-    <img src="{{ image.url }}" class="quest-image">
-    <p class="complete-button">Готово (+{{ price }})</p>
+    <p class="quest-description">{{ description }}</p>
+    <p class="quest-sub-description">{{ sub_description }}</p>
+    <img src="{{ image }}" class="quest-image">
+
 </div>
+{% if not completed %}
+    <p id="complete-button-incomplete" class="complete-button" data-price="{{ price }}">Готово (+{{ price }})</p>
+{% else %}
+    <p class="complete-button">Уже выполнено</p>
+{% endif %}

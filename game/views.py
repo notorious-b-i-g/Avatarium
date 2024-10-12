@@ -29,26 +29,40 @@ def quest(request):
     top_quests = user_quests.filter(quest__top=True, completed=False)  # Только топ квесты, которые еще не выполнены
     return render(request, 'game/quests_html/quest.html', {'completed_quests': completed_quests,
                                                            'incomplete_quests': incomplete_quests,
-                                                           'top_quests': top_quests, })
+                                                           'top_quests': top_quests, 'user': user, 'initial_balance': user.balance})
 
 
 def quest_info(request):
     quest_id = request.GET.get('quest_id')
-    quest = Quest.objects.get(id=quest_id)  # Получаем квест по ID
+
+    # Получаем информацию о квесте из таблицы UserQuest
+    user_quest = UserQuest.objects.get(id=quest_id)  # Получаем UserQuest по ID
+    quest = user_quest.quest  # Получаем сам объект квеста
+
     title = quest.title
     description = quest.description
     sub_description = quest.sub_description
     image = quest.info_image
+    print(image)
     price = quest.cost
-    if image:
-        image_send = image
-    else:
-        image_send = ''
-    return render(request, 'game/quests_html/quest_info.html', {'title': title,
-                                                                'description': description,
-                                                                'sub_description': sub_description,
-                                                                'image': image_send,
-                                                                'price': price})
+    completed = user_quest.completed
+
+    # Получаем аватарку пользователя
+    user_avatar = user_quest.user.avatarka.url
+
+    # Проверка наличия изображения
+    image_send = image.url if image else ''
+
+    return render(request, 'game/quests_html/quest_info.html', {
+        'title': title,
+        'description': description,
+        'sub_description': sub_description,
+        'image': image_send,
+        'price': price,
+        'completed': completed,
+        'user_avatar': user_avatar
+    })
+
 
 
 def filter_tasks(request):

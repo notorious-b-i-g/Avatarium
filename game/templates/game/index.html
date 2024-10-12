@@ -5,7 +5,6 @@
 
 </head>
 <div id="clicker-container"
-     data-update-balance-url="{% url 'update_balance' %}"
      data-csrf-token="{{ csrf_token }}"
      data-initial-balance="{{ initial_balance|default:0 }}"
      data-user-id="{{ user.id|default:'null' }}">
