@@ -61,17 +61,35 @@ function initTasksCreateJS() {
     }
 }
 
-
-
+// tasks.js
 function initTaskFormJS(){
     var form = document.getElementById('create-task-form');
     var submitButton = document.getElementById('create-task-button');
+    var uploadImageButton = document.getElementById('upload-image-button');
+    var fileInput = form.querySelector('.task-img-input'); // Используем класс из формы
+    console.log(fileInput);
+    var fileNameDisplay = document.getElementById('file-name-display');
 
-    if (!form || !submitButton) {
-        console.error('Форма или кнопка отправки не найдены.');
+    if (!form || !submitButton || !uploadImageButton || !fileInput) {
+        console.error('Необходимые элементы формы не найдены.');
         return;
     }
 
+    // Обработка клика на кнопку "Загрузить изображение"
+    uploadImageButton.addEventListener('click', function() {
+        fileInput.click(); // Триггерим клик на скрытом input type="file"
+    });
+
+    // Обновление отображения имени файла при выборе
+    fileInput.addEventListener('change', function() {
+        if (fileInput.files.length > 0) {
+            fileNameDisplay.textContent = 'Выбран файл: ' + fileInput.files[0].name;
+        } else {
+            fileNameDisplay.textContent = '';
+        }
+    });
+
+    // Обработка отправки формы
     submitButton.addEventListener('click', function(e) {
         e.preventDefault();  // Предотвращаем стандартное поведение кнопки
 
@@ -79,10 +97,7 @@ function initTaskFormJS(){
 
         fetch('tasks/create/', {
             method: 'POST',
-            body: formData,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest' // Для Django, чтобы определить AJAX запрос
-            }
+            body: formData
         })
         .then(response => {
             if (!response.ok) {
@@ -92,17 +107,16 @@ function initTaskFormJS(){
         })
         .then(data => {
             if (data.success) {
-                console.log('Задача создана успешно');
-                // Опционально: обновите UI или перенаправьте пользователя
-                // Например, очистить форму:
                 form.reset();
+                fileNameDisplay.textContent = ''; // Сбрасываем отображение имени файла
             } else {
                 console.error('Ошибка: ' + data.error);
-                // Опционально: отобразите ошибку пользователю
+                alert('Ошибка при создании задачи');
             }
         })
         .catch(error => console.error('Ошибка AJAX запроса: ', error));
     });
 }
 
-// Инициализируем функцию после загрузки DOM
+
+

@@ -13,11 +13,15 @@
         <p class="near-game-writing">Ближайшая игра</p>
         <form method="post" id="create-task-form">
             {% csrf_token %}
-            {{ form.title }}<br>
-            {{ form.description }}<br>
-            {{ form.cost }}<br>
+            {{ form_near.title }}<br>
+            {{ form_near.description }}<br>
+            {{ form_near.cost }}<br>
+            {{ form_near.image }}<br>
+
+            <img src="{% static 'game/img/tasks/input_img.svg' %}"  id="upload-image-button" class="upload-image-button" >Загрузить изображение</img>
 
             <!-- Скрытое поле для task_category -->
+
             <input type="hidden" name="task_category" value="{{ task_category }}">
         </form>
 

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
-from .forms import TaskForm
+from .forms import *
 
 
 def game(request):
@@ -96,23 +96,23 @@ def tasks(request):
 
 def create_task(request):
     if request.method == 'POST':
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            task = form.save(commit=False)
+        form_near = TaskFormNear(request.POST, request.FILES)
+        if form_near.is_valid():
+            task_near = form_near.save(commit=False)
             # Получаем task_category из POST данных
             task_category = request.POST.get('task_category')
             if task_category:
                 # Устанавливаем категорию задачи
                 category = TaskCategory.objects.get(category_name=task_category)
-                task.category = category
-            task.save()
+                task_near.category = category
+            task_near.save()
             return JsonResponse({'success': True})
         else:
-            return JsonResponse({'success': False, 'errors': form.errors})
+            return JsonResponse({'success': False, 'errors': form_near.errors})
     else:
         task_category = request.GET.get('task_category', None)
-        form = TaskForm()
-        return render(request, 'game/tasks_html/create_task.html', {'form': form, 'task_category': task_category})
+        form_near = TaskFormNear()
+        return render(request, 'game/tasks_html/create_task.html', {'form_near': form_near, 'task_category': task_category})
 
 
 def update_balance(request):
