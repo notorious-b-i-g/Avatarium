@@ -2,7 +2,7 @@
     height: 100%;
     width: 100%;
     position: absolute;
-    top: 20%;
+    top: 0%;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -10,17 +10,15 @@
 /* Создать новую игру */
 .task-create-title{
     position: absolute;
-    width: 164px;
-    left: calc(50% - 164px/2 - 54px);
-    top: 10.19%;
-    bottom: 84.55%;
+    width: 35vw;
+    left: 15%;
+    top: 9%;
 
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: 21px;
+    font-size: 5vw;
     line-height: 22px;
-    /* or 105% */
     letter-spacing: -0.01em;
 
     color: #FFFFFF;
@@ -37,22 +35,53 @@
     letter-spacing: -0.01em;
     color: #0AB0D7;
     margin-top: 15px;
+    z-index: 100; /* Убедитесь, что кнопка отображается поверх других элементов */
+
 }
 
-.form-inputs {
+.form-div-near{
+    width: 85%;
+    height: 35vh;
+    position: absolute;
+    top: 12%;
+    right: 0;
+}
+.form-div-far{
+    width: 85%;
+    height: 35vh;
+    position: absolute;
+    top: 55%;
+    right: 0;
+}
+.form-inputs-near {
     background: #FFFFFF;
     width: 85%;
     height: 35vh;
     border-radius: 20px 0px 0px 20px;
     position: absolute;
-    top: 0;
+    top: 17%;
     right: 0;
     padding-left: 15px;
-    /* Ограничение содержимого по высоте и ширине */
     max-width: 85%;
     max-height: 35vh;
-    overflow: auto; /* Добавляем прокрутку, если содержимое выходит за пределы */
+    overflow: auto;
 }
+
+
+.form-inputs-far {
+    background: #FFFFFF;
+    width: 85%;
+    height: 35vh;
+    border-radius: 20px 0px 0px 20px;
+    position: absolute;
+    top: 0%;
+    right: 0;
+    padding-left: 15px;
+    max-width: 85%;
+    max-height: 35vh;
+    overflow: auto;
+}
+
 
 
 .task-title-input, .task-desc-input, .task-cost-input{
@@ -61,6 +90,7 @@
     border: none;
     margin-top: 8px;
     width: 90%;
+    max-height: 16vh;
 }
 
 .task-title-input::placeholder {
@@ -88,17 +118,24 @@
 .create-task-submit {
     position: absolute;
     background: transparent;
-    top: 38%;
+    top: 46%;
     width: 50%;
     transform: translateX(50%);
     border: none;
 }
+
 .task-img-input{
     display: none;
 }
-.upload-image-button{
 
-    position: fixed;
-    top: 30%;
-    transform: translateX(0%);
-    }
+.upload-image-button{
+    position: absolute;
+    top: 100%;
+    left: 17%;
+}
+
+.goback-button {
+    position: absolute;
+    left: 8%;
+    top: 11%;
+}

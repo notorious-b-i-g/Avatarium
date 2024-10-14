@@ -94,25 +94,44 @@ def tasks(request):
     })
 
 
-def create_task(request):
+def create_task_near(request):
     if request.method == 'POST':
         form_near = TaskFormNear(request.POST, request.FILES)
         if form_near.is_valid():
             task_near = form_near.save(commit=False)
-            # Получаем task_category из POST данных
             task_category = request.POST.get('task_category')
             if task_category:
-                # Устанавливаем категорию задачи
                 category = TaskCategory.objects.get(category_name=task_category)
                 task_near.category = category
             task_near.save()
             return JsonResponse({'success': True})
         else:
             return JsonResponse({'success': False, 'errors': form_near.errors})
-    else:
-        task_category = request.GET.get('task_category', None)
-        form_near = TaskFormNear()
-        return render(request, 'game/tasks_html/create_task.html', {'form_near': form_near, 'task_category': task_category})
+    return JsonResponse({'success': False, 'errors': 'Invalid request method'})
+
+
+def create_task_far(request):
+    if request.method == 'POST':
+        form = TaskFormFar(request.POST, request.FILES)
+        if form.is_valid():
+            task_near = form.save(commit=False)
+            task_category = request.POST.get('task_category')
+            if task_category:
+                category = TaskCategory.objects.get(category_name=task_category)
+                task_near.category = category
+            task_near.save()
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'errors': form.errors})
+    return JsonResponse({'success': False, 'errors': 'Invalid request method'})
+
+
+
+def create_task(request):
+    task_category = request.GET.get('task_category', None)
+    form_near = TaskFormNear()
+    form_far = TaskFormFar()
+    return render(request, 'game/tasks_html/create_task.html', {'form_near': form_near, 'form_far': form_far, 'task_category': task_category})
 
 
 def update_balance(request):

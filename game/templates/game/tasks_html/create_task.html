@@ -1,32 +1,57 @@
 {% load static %}
 <head>
-    <link rel="stylesheet" href="{% static 'game/css/main.css' %}">
-        <link rel="stylesheet" href="{% static 'game/css/task_create.css' %}">
-
-
+    <link rel="stylesheet" href="{% static 'game/css/task_create.css' %}">
 </head>
-<img id="background-img3" src="{% static 'game/img/background_0.svg' %}" class="background-image" alt="Background">
 <p class="task-create-title">Создать новую игру</p>
+<img id="background-img2" src="{% static 'game/img/background_0.svg' %}" class="background-image" alt="Background">
 
 <div id="task-create-menu" class="task-create-menu">
-    <div class="form-inputs">
-        <p class="near-game-writing">Ближайшая игра</p>
-        <form method="post" id="create-task-form">
+    <img src="{% static 'game/img/quests/goback.svg' %}" id="goback-button" class="goback-button">
+
+    <!-- Первая форма: Ближайшая игра -->
+    <div class="form-div-near">
+        <form method="post" id="create-task-form-near" class="form-inputs-near">
+            <p class="near-game-writing">Ближайшая игра</p>
+
             {% csrf_token %}
             {{ form_near.title }}<br>
             {{ form_near.description }}<br>
             {{ form_near.cost }}<br>
             {{ form_near.image }}<br>
 
-            <img src="{% static 'game/img/tasks/input_img.svg' %}"  id="upload-image-button" class="upload-image-button" >Загрузить изображение</img>
+            <!-- Скрытое поле ввода файла с классом task-img-input -->
+            <input type="file" name="image" class="task-img-input" style="display: none;">
 
-            <!-- Скрытое поле для task_category -->
 
             <input type="hidden" name="task_category" value="{{ task_category }}">
         </form>
+        <button type="button" id="create-task-button-near" class="create-task-submit">Создать</button>
+        <img src="{% static 'game/img/tasks/input_img.svg' %}" id="upload-image-button-near" class="upload-image-button">
 
     </div>
 
-    <!-- Кнопка размещена вне формы с уникальным ID -->
-    <button type="button" id="create-task-button" class="create-task-submit">Создать</button>
+    <!-- Кнопка для создания ближайшей игры -->
+
+    <!-- Вторая форма: Дальняя игра -->
+    <div class="form-div-far">
+        <form method="post" id="create-task-form-far" class="form-inputs-far">
+            <p class="far-game-writing">Дальняя игра</p>
+
+            {% csrf_token %}
+            {{ form_far.title }}<br>
+            {{ form_far.description }}<br>
+            {{ form_far.cost }}<br>
+            {{ form_far.image }}<br>
+            <!-- Скрытое поле ввода файла с классом task-img-input -->
+            <input type="file" name="image" class="task-img-input" style="display: none;">
+            <input type="hidden" name="task_category" value="{{ task_category }}">
+        </form>
+        <button type="button" id="create-task-button-far" class="create-task-submit">Создать</button>
+        <img src="{% static 'game/img/tasks/input_img.svg' %}" id="upload-image-button-far" class="upload-image-button">
+
+    </div>
+
+    <!-- Кнопка для создания дальней игры -->
 </div>
+
+
