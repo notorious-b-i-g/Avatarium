@@ -15,9 +15,33 @@ def game(request):
 
 def index(request):
     user = Users.objects.get(id=1)  # Предполагается, что вы знаете ID текущего пользователя
-    return render(request, 'game/index.html', {'user': user, 'initial_balance': user.balance
-                                               })
+    return render(request, 'game/index.html', {'user': user, 'initial_balance': user.balance})
 
+def progress(request):
+    user = Users.objects.get(id=1)  # Пример получения пользователя, здесь лучше использовать request.user
+    task_categories = TaskCategory.objects.all()  # Получение всех категорий задач
+
+    return render(request, 'game/progress_html/progress.html', {
+        'user': user,
+        'task_categories': task_categories
+    })
+def progress_tasks(request):
+    category_name = request.GET.get('category')
+    user = Users.objects.get(id=1)  # Предполагается, что вы знаете ID текущего пользователя
+
+    if category_name:
+        tasks = user.tasks.filter(category__category_name=category_name)
+        # Получаем логотип категории напрямую из TaskCategories
+        category_logo = TaskCategory.objects.filter(category_name=category_name).first().logo
+    else:
+        tasks = user.tasks.all()
+        category_logo = None  # Логотип выводим только при выбранной категории
+
+    return render(request, 'game/progress_html/progress_list_partial.html', {
+        'tasks': tasks,
+        'task_category': category_name,
+        'category_logo': category_logo
+    })
 
 def quest(request):
     user = Users.objects.get(id=1)  # Предполагается, что вы знаете ID текущего пользователя

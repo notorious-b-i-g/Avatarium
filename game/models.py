@@ -5,6 +5,7 @@ class TaskCategory(models.Model):
     category_name = models.CharField(max_length=255)
     title = models.CharField(max_length=255, blank=True, null=True)
     logo = models.ImageField(upload_to='tasks/logos', blank=True, null=True)
+
     def __str__(self):
         return self.category_name
 
@@ -16,6 +17,7 @@ class Task(models.Model):
     cost = models.IntegerField()
     category = models.ForeignKey(TaskCategory, on_delete=models.CASCADE, blank=True, null=True)
     image = models.ImageField(upload_to='tasks/images/', blank=True, null=True)  # Новое поле
+    top = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
@@ -52,3 +54,12 @@ class UserQuest(models.Model):
 
     def __str__(self):
         return f"{self.user.name} - {self.quest.title} - {'Completed' if self.completed else 'Not Completed'}"
+
+
+class UserTask(models.Model):
+    user = models.ForeignKey(Task, on_delete=models.CASCADE)
+    task = models.ForeignKey(Quest, on_delete=models.CASCADE)
+    completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.user.name} - {self.task.title} - {'Completed' if self.completed else 'Not Completed'}"

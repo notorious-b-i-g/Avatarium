@@ -7,7 +7,10 @@ function loadContent(tab) {
         page = 'quest';  // URL, настроенный в Django urls.py
     } else if(tab == '2') {
         page = 'tasks';  // URL, настроенный в Django urls.py
+    } else if(tab == '3'){
+        page = 'progress';
     }
+    console.log(page);
     var xhr = new XMLHttpRequest();
     xhr.open('GET', page, true);
     xhr.onreadystatechange = function () {
@@ -21,6 +24,8 @@ function loadContent(tab) {
                 initQuestJS();
             } else if(page === 'tasks') {
                 initTasksJS();
+            } else if(page === 'progress'){
+                initProgressJS();
             }
         }
     };
