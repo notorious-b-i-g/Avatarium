@@ -1,26 +1,33 @@
+<!-- progress.html -->
 {% load static %}
-    <link rel="stylesheet" href="{% static 'game/css/progress.css' %}">
-<html lang="ru">
-<body>
-     <div class = "avatar">\
+
+
+<link rel="stylesheet" href="{% static 'game/css/progress.css' %}">
+<img id="background-img2" src="{% static 'game/img/background_0.svg' %}" class="background-image" alt="Background">
+
+
+<div class = "progress-content">
+    <div class="avatar">
+
         {% if user.avatarka %}
-            <img src="{{ user.avatarka.url }}" alt="{{ user.name }}" style="width:150px;height:150px;">
+            <img src="{{ user.avatarka.url }}" alt="{{ user.name }}" class = "avatar-img">
         {% else %}
             <img src="{% static 'avatars/def_ava.png' %}" alt="Аватар по умолчанию" style="width:150px;height:150px;">
         {% endif %}
-     </div>
-     <div class="categories-menu-div" id= "categories-menu-div">
-        {% for category in task_categories %}
-            <div class="categories-content">
-                <button  class="category-button" id="{{ category.category_name }}">
-                    <img src="{{ category.logo.url }}" alt="{{ category.category_name }}" class="task-logo">
-                </button>
-                <p class="category-name"> {{ category.title }}</p>
-            </div>
-        {% endfor %}
     </div>
-    <div id="task-menu-div" class="task-menu-div hidden" >
-        <div id="task-list" class="task-list"> </div>
+
+    <!-- Кнопки для переключения между типами игр -->
+    <div class="progress-menu">
+        <button id="top-games-button" class="progress-button">Мои топ игры</button>
+        <button id="near-games-button" class="progress-button active-border">Ближайшая игра(список задач)</button>
+        <button id="future-games-button" class="progress-button">Игры на будущее</button>
     </div>
-</body>
-</html>
+
+    <!-- Контейнер для динамического контента -->
+    <div id="progress-content">
+        <!-- Содержимое будет загружаться динамически через AJAX -->
+    </div>
+</div>
+<script src="{% static 'game/js/progress.js' %}"></script>
+
+

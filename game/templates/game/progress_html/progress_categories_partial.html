@@ -1,0 +1,23 @@
+<!-- progress_categories_partial.html -->
+{% load static %}
+
+
+
+
+<div class = "games-container">
+    {% for category in task_categories %}
+        <div class="categories-content">
+            <button class="category-button" id="{{ category.category_name }}">
+                <img src="{{ category.logo.url }}" alt="{{ category.category_name }}" class="task-logo">
+            </button>
+            <p class="category-name">{{ category.title }}</p>
+            <p class="category-stats">
+                {% if category.total_tasks > 0 %}
+                    {{ category.completed_tasks }} / {{ category.total_tasks }}
+                {% else %}
+                    0
+                {% endif %}
+            </p>
+        </div>
+    {% endfor %}
+</div>

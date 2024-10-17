@@ -1,20 +1,17 @@
+<!-- progress_list_partial.html -->
 {% load static %}
-<head>
-    <link rel="stylesheet" href="{% static 'game/css/task_list.css' %}">
 
-</head>
-{% for task in tasks %}
-    <div class="task-item">
-        <h3 class="task-title">{{ task.title }}</h3>
-        <p class="task-description">{{ task.description }}</p>
-    </div>
-{% empty %}
-    <p>Нет доступных задач для данной категории</p>
-{% endfor %}
-
-<div id="task-create-panel" class="task-create-panel {{ task_category }}" data-category="{{ task_category }}">
-    <img src="{{ category_logo.url }}" class="task-mini-logo">
+<div class="task-list-header">
+    <button id="back-to-categories-button" class="back-button">Назад</button>
 </div>
 
-
-
+{% if tasks %}
+    {% for task in tasks %}
+        <div class="task-item">
+            <h3 class="task-title">{{ task.title }}</h3>
+            <p class="task-description">{{ task.description }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Нет доступных задач в этой категории.</p>
+{% endif %}

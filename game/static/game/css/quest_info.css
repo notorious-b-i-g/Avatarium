@@ -87,7 +87,9 @@
     top: 10%;
     left: 7%;
     width: 17vw;
+    max-width: 70px;
     height: 17vw;
+    max-height: 70px;
     border-radius: 50%;
     padding: 1px; /* Толщина границы */
     background: linear-gradient(135deg, #0AB0D7, #5457A1); /* Градиент */

@@ -3,14 +3,45 @@
     <link rel="stylesheet" href="{% static 'game/css/task_list.css' %}">
 
 </head>
-{% for task in tasks %}
-    <div class="task-item">
-        <h3 class="task-title">{{ task.title }}</h3>
-        <p class="task-description">{{ task.description }}</p>
-    </div>
-{% empty %}
-    <p>Нет доступных задач для данной категории</p>
-{% endfor %}
+<p class="category-writing">{{ russian_title }}</p>
+<div class="incomplete-tasks-div">
+    {% for task in tasks %}
+        <div class="task-content" data-quest-id="{{ user_quest.id }}">
+            {% if task.top %}
+                <img src="{% static 'game/img/tasks/favourites.svg' %}" class="task-top-img">
+            {% else %}
+                <img src="{% static 'game/img/tasks/favourites_ns.svg' %}" class="task-top-img">
+            {% endif %}
+            <img src="{{ category_logo.url }}" class="task-logo-mini">
+            <p class="task-title">{{ task.title }}</p>
+            <p class="task-price">+{{ task.cost }}</p>
+            <img src="{% static 'game/img/quests/goto.svg' %}" class="goto-image">
+        </div>
+    {% endfor %}
+</div>
+
+<div class="complete-tasks-div hidden">
+    {% for task in complete_tasks %}
+        <div class="task-content completed" data-quest-id="{{ user_quest.id }}">
+            {% if task.top %}
+                <img src="{% static 'game/img/tasks/favourites.svg' %}" class="task-top-img">
+            {% else %}
+                <img src="{% static 'game/img/tasks/favourites_ns.svg' %}" class="task-top-img">
+            {% endif %}
+            <img src="{{ category_logo.url }}" class="task-logo-mini">
+            <p class="task-title">{{ task.title }}</p>
+            <p class="task-price">+{{ task.cost }}</p>
+            <img src="{% static 'game/img/quests/goto.svg' %}" class="goto-image">
+        </div>
+    {% endfor %}
+</div>
+
+
+<div class="active-list-switch">
+    <p id="all-tasks" class="all-tasks active-border">Все</p>
+    <p id="completed-tasks" class="completed-tasks">Выполненные</p>
+</div>
+
 
 <div id="task-create-panel" class="task-create-panel {{ task_category }}" data-category="{{ task_category }}">
     <img src="{{ category_logo.url }}" class="task-mini-logo">

@@ -1,0 +1,15 @@
+<!-- progress_top_games_partial.html -->
+{% load static %}
+
+{% if tasks %}
+    {% for task in tasks %}
+        <div class = "task-top-content">
+            <div class="task-item">
+                <h3 class="task-category">{{ task.category }}</h3>
+                <p class="task-title">{{ task.title }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>У вас нет топ игр.</p>
+{% endif %}

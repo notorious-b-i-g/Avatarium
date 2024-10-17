@@ -16,11 +16,16 @@ class Task(models.Model):
     user_comment = models.TextField(blank=True , null=True)
     cost = models.IntegerField()
     category = models.ForeignKey(TaskCategory, on_delete=models.CASCADE, blank=True, null=True)
-    image = models.ImageField(upload_to='tasks/images/', blank=True, null=True)  # Новое поле
     top = models.BooleanField(default=False)
+    far = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
+
+
+class TaskImage(models.Model):
+    task = models.ForeignKey(Task, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='tasks/images/')
 
 
 class Quest(models.Model):
@@ -40,7 +45,6 @@ class Users(models.Model):
     name = models.CharField(max_length=255)
     reg_time = models.DateTimeField()
     balance = models.IntegerField()
-    tasks = models.ManyToManyField(Task, blank=True)
     avatarka = models.ImageField(upload_to='avatars', default='avatars/def_ava.png')
 
     def __str__(self):
@@ -57,8 +61,8 @@ class UserQuest(models.Model):
 
 
 class UserTask(models.Model):
-    user = models.ForeignKey(Task, on_delete=models.CASCADE)
-    task = models.ForeignKey(Quest, on_delete=models.CASCADE)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
     completed = models.BooleanField(default=False)
 
     def __str__(self):

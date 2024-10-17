@@ -26,7 +26,7 @@
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.near-game-writing{
+.game-writing{
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
@@ -40,58 +40,49 @@
 }
 
 .form-div-near{
-    width: 85%;
-    height: 35vh;
+    width: 95%;
+    height: 30vh;
     position: absolute;
-    top: 12%;
+    top: 16%;
     right: 0;
 }
 .form-div-far{
-    width: 85%;
-    height: 35vh;
+    width: 95%;
+    height: 30vh;
     position: absolute;
     top: 55%;
     right: 0;
 }
-.form-inputs-near {
-    background: #FFFFFF;
-    width: 85%;
-    height: 35vh;
-    border-radius: 20px 0px 0px 20px;
-    position: absolute;
-    top: 17%;
-    right: 0;
-    padding-left: 15px;
-    max-width: 85%;
-    max-height: 35vh;
-    overflow: auto;
-}
-
-
+.form-inputs-near,
 .form-inputs-far {
     background: #FFFFFF;
-    width: 85%;
-    height: 35vh;
+    height: 30vh; /* Фиксированная высота */
     border-radius: 20px 0px 0px 20px;
     position: absolute;
-    top: 0%;
     right: 0;
     padding-left: 15px;
-    max-width: 85%;
-    max-height: 35vh;
-    overflow: auto;
+    max-width: 95%;
+    overflow-y: auto; /* Включаем вертикальную прокрутку */
+    overflow-x: hidden; /* Отключаем горизонтальную прокрутку */
+    width: 100%;
 }
 
 
 
-.task-title-input, .task-desc-input, .task-cost-input{
+/* Убедитесь, что поля ввода не имеют собственной прокрутки */
+.task-title-input,
+.task-desc-input,
+.task-cost-input {
     background-color: transparent;
     outline: none;
     border: none;
     margin-top: 8px;
     width: 90%;
-    max-height: 16vh;
+    max-height: none; /* Убираем ограничение по высоте */
+    overflow: visible; /* Позволяем полю расширяться */
+    resize: none; /* Предотвращаем изменение размера пользователем, если это textarea */
 }
+
 
 .task-title-input::placeholder {
     font-family: 'Montserrat';
@@ -117,11 +108,22 @@
 
 .create-task-submit {
     position: absolute;
-    background: transparent;
-    top: 46%;
-    width: 50%;
-    transform: translateX(50%);
+    top: 105%;
+    left: 50%;
+    transform: translateX(-50%);
     border: none;
+    background: linear-gradient(90deg, #81CACF 0%, #0AB0D7 100%);
+    mix-blend-mode: normal;
+    border-radius: 20px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+    width: 30vw;
+    height: 4vh;
 }
 
 .task-img-input{
@@ -130,8 +132,8 @@
 
 .upload-image-button{
     position: absolute;
-    top: 100%;
-    left: 17%;
+    top: 85%;
+    left: 8%;
 }
 
 .goback-button {
@@ -139,3 +141,62 @@
     left: 8%;
     top: 11%;
 }
+
+.avatar-wrapper {
+    position: absolute;
+    top: 9%;
+    left: 80%;
+    width: 13vw;
+    height: 13vw;
+    border-radius: 50%;
+    padding: 1px; /* Толщина границы */
+    background: linear-gradient(135deg, #0AB0D7, #5457A1); /* Градиент */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-avatar{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.weekly-progress-writing{
+    position: absolute;
+    top: 11%;
+    width: 93px;
+    left: 55%;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 13px;
+    text-align: center;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+}
+
+.favourites{
+    position: absolute;
+    top: 7%;
+    left: 90%;
+    z-index: 2;
+}
+.image-preview-container {
+    position: sticky;
+    left: 15%;
+    top: 60%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.thumbnail {
+    width: 32vw;
+    height: 15vh;
+    object-fit: cover;
+    margin-right: 5px;
+    cursor: pointer;
+}
+

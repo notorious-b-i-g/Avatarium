@@ -1,3 +1,113 @@
 .hidden {
     display: none;
 }
+.avatar{
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+    top: 9.66%;
+}
+.avatar-img{
+    width: 25vw;
+}
+
+.background-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.progress-menu{
+    gap:100px;
+    position: absolute;
+    width: 15vh;
+    height: 15vh;
+    left:50%;
+    top: 27.5%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row; /* Элементы располагаются вертикально */
+    justify-content: center; /* Центрирование содержимого по вертикали */
+    align-items: center; /* Центрирование содержимого по горизонтали */
+}
+.progress-button{
+
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+    transition: color 0.3s ease; /* Плавный переход для фона */
+    }
+
+.progress-button:active{
+    color: #70EEFF;
+}
+.task-top-content{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 30vh;
+    width: 90vw;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.task-item {
+    background-color: #f5f5f5;
+    border-radius: 27px;
+    padding: 18px;
+    width: 20vh;
+    height: 20vh;
+    border: 1px solid #d3e2ea;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.task-category {
+    position:absolute;
+    font-size: 12px;
+    color: #b0b0b0; /* Цвет категории задачи (например, "Отдых") */
+    margin-bottom: 10px;
+}
+
+.task-title {
+    position: absolute;
+    top: 20%;
+    left: 6%;
+    font-size: 18px;
+    font-weight: bold;
+    color: #00a7d0; /* Цвет названия задачи (например, "Отпуск") */
+    margin: 0;
+}
+
+.games-container{
+    position:absolute;
+    top:40%;
+}
+
+
+.categories-content{
+
+    width: 100%; /* Устанавливаем ширину контейнера */
+    height: 100%;
+    box-sizing: border-box; /* Включаем внутренние отступы в расчёт ширины */
+
+    position:absolute;
+    top: 0%;
+    left: 50%;
+    transform : translateX(-50%);
+}

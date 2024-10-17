@@ -1,57 +1,68 @@
 {% load static %}
-<head>
-    <link rel="stylesheet" href="{% static 'game/css/task_create.css' %}">
-</head>
+
 <p class="task-create-title">Создать новую игру</p>
-<img id="background-img2" src="{% static 'game/img/background_0.svg' %}" class="background-image" alt="Background">
 
 <div id="task-create-menu" class="task-create-menu">
+    <p class="weekly-progress-writing">Прогресс недели</p>
+    <div class="avatar-wrapper">
+        <img src="{{ user_avatar }}" alt="User Avatar" class="user-avatar">
+    </div>
     <img src="{% static 'game/img/quests/goback.svg' %}" id="goback-button" class="goback-button">
 
-    <!-- Первая форма: Ближайшая игра -->
     <div class="form-div-near">
-        <form method="post" id="create-task-form-near" class="form-inputs-near">
-            <p class="near-game-writing">Ближайшая игра</p>
+        <img src="{% static 'game/img/tasks/favourites_ns.svg' %}" id="favourites-img-near" class="favourites">
+<!-- Форма для ближайшей игры -->
+        <form method="post" id="create-task-form-near" class="form-inputs-near" enctype="multipart/form-data">
+            <p class="game-writing">Ближайшая игра</p>
 
             {% csrf_token %}
             {{ form_near.title }}<br>
-            {{ form_near.description }}<br>
-            {{ form_near.cost }}<br>
-            {{ form_near.image }}<br>
+            {{ form_near.description }}
 
-            <!-- Скрытое поле ввода файла с классом task-img-input -->
-            <input type="file" name="image" class="task-img-input" style="display: none;">
+            <!-- Поле для загрузки изображений -->
+            <input type="file" name="images" class="task-img-input" style="display: none;" multiple accept="image/*">
 
+            <!-- Контейнер для отображения миниатюр -->
+            <div class="image-preview-container" id="image-preview-container-near"></div>
 
+            <input type="hidden" name="cost" value="100">
+            <input type="hidden" name="top" id="top-field-near" value="False">
             <input type="hidden" name="task_category" value="{{ task_category }}">
+            <input type="hidden" name="task_type" value="False">
+
         </form>
-        <button type="button" id="create-task-button-near" class="create-task-submit">Создать</button>
+        <button type="button" id="create-task-button-near" class="create-task-submit">Создать (+100)</button>
         <img src="{% static 'game/img/tasks/input_img.svg' %}" id="upload-image-button-near" class="upload-image-button">
+
 
     </div>
 
-    <!-- Кнопка для создания ближайшей игры -->
 
-    <!-- Вторая форма: Дальняя игра -->
     <div class="form-div-far">
+        <img src="{% static 'game/img/tasks/favourites_ns.svg' %}" id="favourites-img-far" class="favourites">
         <form method="post" id="create-task-form-far" class="form-inputs-far">
-            <p class="far-game-writing">Дальняя игра</p>
+            <p class="game-writing">Игра на будущее</p>
 
             {% csrf_token %}
             {{ form_far.title }}<br>
-            {{ form_far.description }}<br>
-            {{ form_far.cost }}<br>
-            {{ form_far.image }}<br>
-            <!-- Скрытое поле ввода файла с классом task-img-input -->
-            <input type="file" name="image" class="task-img-input" style="display: none;">
+            {{ form_far.description }}
+
+            <input type="file" name="images" class="task-img-input" style="display: none;" multiple accept="image/*">
+
+            <!-- Контейнер для отображения миниатюр -->
+            <div class="image-preview-container" id="image-preview-container-far"></div>
+
+            <input type="hidden" name="cost" value="100">
+            <input type="hidden" name="top" id="top-field-far" value="False">
             <input type="hidden" name="task_category" value="{{ task_category }}">
+            <input type="hidden" name="task_type" value="True">
+
         </form>
-        <button type="button" id="create-task-button-far" class="create-task-submit">Создать</button>
+        <button type="button" id="create-task-button-far" class="create-task-submit">Создать (+100)</button>
         <img src="{% static 'game/img/tasks/input_img.svg' %}" id="upload-image-button-far" class="upload-image-button">
 
     </div>
 
-    <!-- Кнопка для создания дальней игры -->
 </div>
 
 

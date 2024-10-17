@@ -84,7 +84,6 @@
     background: #ffffff;
     background-size: cover;
     border-radius: 22px;
-    overflow: hidden;
 }
 
 .quest-logo {
@@ -121,11 +120,9 @@
 .quest-price {
     position: absolute;
     margin: 0; /* Убираем отступы у текста */
-
-    right: 5vw;  /* Прижимаем к правому краю родительского блока */
+    right: 6%;  /* Прижимаем к правому краю родительского блока */
     font-weight: 700;
     color: #0AB0D7;
-
 }
 
 .common-quests-div {
@@ -159,6 +156,7 @@
     width: 7px;
     height: auto;
     right: 2vw;
+    top: 40%;
 }
 .hidden {
     display: none;
