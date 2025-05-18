@@ -1,0 +1,453 @@
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Скрытый класс */
+
+.input-form:focus {
+    outline: none;
+    border: none;
+}
+
+
+/* Контейнер для модального контента */
+.modal-content-profile, .faq-div {
+    height: 63vh;
+    background: #DBDDE1;
+    margin: 10% auto;
+    padding: 25px;
+    border-top-left-radius: 28px;
+    border-bottom-left-radius: 28px;
+    width: 90%;
+    max-width: 500px;
+    position: absolute;
+    right: 0;
+    top: 20%;
+    overflow-y: auto;
+}
+
+/* Кнопка закрытия модального окна */
+.close-button {
+    position: absolute;
+    left: 3%;
+    top: 4%;
+    cursor: pointer;
+}
+
+
+/* Стиль кнопки редактирования профиля */
+.profile-button {
+    display: inline-block;
+    margin: 2px;
+    padding: 10px 30px;
+    font-size: 16px;
+    background-color: #F5F7FA; /* Светлый фон */
+    color: #637E9A; /* Серый текст */
+    border: none;
+    border-radius: 13px; /* Мягкое скругление углов */
+    font-family: Arial, sans-serif;
+    font-weight: 500; /* Полужирный текст */
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.profile-button-down{
+    bottom: 26%;
+    display: inline-block;
+    margin: 2px;
+    padding: 10px 30px;
+    font-size: 16px;
+    background-color: #F5F7FA;
+    color: #637E9A;
+    border: none;
+    border-radius: 13px;
+    font-family: Arial, sans-serif;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: absolute;
+    width: 88%;
+    height: 11%;
+}
+
+/* Эффект при наведении */
+.profile-button:hover {
+    background-color: #E8EBF0; /* Легкое затемнение при наведении */
+}
+
+
+/* Стили формы */
+.form-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.input-form {
+    background: transparent;
+    width: 100%;
+    display: block;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1.7vh;
+    line-height: 2vh;
+    letter-spacing: -0.01em;
+    color: #637E9A;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.input-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1.7vh;
+    line-height: 2vh;
+    letter-spacing: -0.01em;
+    color: #637E9A;
+}
+
+.title, .faq-writing {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 2.2vh;
+    line-height: 1vh;
+    letter-spacing: -0.01em;
+    color: #637E9A;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Стиль кнопки сохранения */
+.save-button {
+    background: linear-gradient(80.67deg, #009DC8, #455EA7);
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 13px;
+}
+
+.save-button:hover {
+    background-color: #50677D;
+}
+
+.social-panel {
+    gap: 3vw;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(45deg, #009DC8, #455EA7);
+    padding: 10px 20px;
+    border-radius: 11px;
+    position: absolute;
+    bottom: 11%;
+    width: 88%;
+    height: 11%;
+}
+
+/* Стили для текста */
+.social-panel .text {
+    color: white;
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+/* Стили для иконок */
+.social-panel a {
+    margin: 0 5px;
+}
+
+.social-panel img {
+    height: 5vh;
+    transition: transform 0.2s;
+}
+
+.social-panel img:hover {
+    transform: scale(1.1);
+}
+
+.profile-content{
+    height: 63%;
+    padding-top: 5vh;
+    padding-left: 5vw;
+    background: #DBDDE1;
+    margin: 10% auto;
+    border-top-left-radius: 28px;
+    border-bottom-left-radius: 28px;
+    width: 90%;
+    max-width: 500px;
+    position: absolute;
+    right: 0;
+    top: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    padding-right: 5vw;
+}
+
+.ava-profile{
+    background: linear-gradient(45deg, #0AB0D7 0%, #5457A1 100%);
+    border-radius: 50%;
+    padding: 0.3vh;
+    position: absolute;
+    top: 15%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    width: 23vw;
+    aspect-ratio: 1 / 1;
+    height: auto;
+}
+.ava{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+}
+.add-avatar-button-profile{
+    position: absolute;
+    top: 0%;
+    right: -1vw;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+}
+
+
+
+
+
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+    background: linear-gradient(245.36deg, #1B5A7D -2.36%, #283E6F 94.22%);
+    margin: 15% auto;
+    padding: 20px;
+    /* border: 1px solid #888; */
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    text-align: left;
+}
+.close {
+    width:3;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.add-photo{
+    width: 61%;
+    height: 2vh;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 4.5vw;
+    line-height: 2vh;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+}
+.photo-container{
+    gap: 2.5vw;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.modal-button {
+    width: 136px;
+    height: 24.59px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+p.modal-button{
+    padding: 0;
+    margin: 0;
+}
+.photo-container{
+    gap: 2.5vw;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.modal-content{
+    left: 53%;
+    transform: translateX(-50%);
+    background: linear-gradient(245.36deg, #1B5A7D -2.36%, #283E6F 94.22%);
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    text-align: left;
+    position: absolute;
+    top: 20%;
+}
+.add-avatar-button {
+    position: absolute;
+    top: 0%;
+    bottom: 10px;
+    right: -2px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+}
+.profile_activate_login{
+    position: absolute;
+    top: 10%;
+    left: 13%;
+    width: 52%;
+}
+.activate-text{
+    padding: 0;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 2.5vw;
+    line-height: 19px;
+    text-align: center;
+    letter-spacing: -0.01em;
+    color: #7AC5B9;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0rem;
+}
+.activate-cont{
+    border-radius: 19px;
+    background-color: #1A1C37;
+    width: 80%;
+}
+.info-box {
+    color: white;
+    text-align: left;
+    height: 10vh;
+    overflow-y: auto;
+}
+
+.login {
+    font-weight: bold;
+    font-size: 19px;
+    margin-top: 0;
+    margin-bottom: 0rem;
+}
+
+.name {
+    font-weight: normal;
+    word-wrap: break-word;
+    /* +7 (985) 675-8976 */
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 19px;
+    /* or 127% */
+    letter-spacing: -0.01em;
+
+    color: #FFFFFF;
+
+
+}
+
+.phone {
+    font-size: 16px;
+    margin-top: 5px;
+    margin-top: 0;
+    margin-bottom: 0rem;
+    font-size: 4vw;
+}
+
+.profile-activate{
+    margin-top: 7px;
+    margin-left: -10px;
+}
+
+
+.faq-list{
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 83%; /* Фиксированная высота 20% от высоты видимой области страницы */
+    width: 90%; /* Ширина 90% от ширины видимой области окна */
+    overflow-y: auto; /* Включаем прокрутку */
+    display: flex;
+    flex-direction: column; /* Элементы располагаются вертикально */
+}
+
+.question-content{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #ffffff;
+    background-size: cover;
+    border-radius: 10px;
+    line-height: 14px;
+    letter-spacing: -0.01em;
+    margin-bottom: 2vh;
+    font-size: 4vw;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.question-title, .question-answer{
+    margin: 0;
+    word-wrap: break-word;
+    padding: 10px;
+
+}
+.question-title{
+    font-weight: 700;
+    color: #637E9A;
+
+}
+
+.question-answer{
+    font-weight: 500;
+    color: #637E9A;
+
+}
+.another-questions{
+    position: absolute;
+    left: 50%;
+    bottom: 3%;
+    transform: translateX(-50%);
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 3vw;
+    line-height: 17px;
+    letter-spacing: -0.01em;
+    color: #637E9A;
+    margin: 0;
+    cursor: pointer;
+    width: 70%;
+}
+.hidden {
+    display: none;
+}

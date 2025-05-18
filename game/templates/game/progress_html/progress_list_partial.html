@@ -1,0 +1,25 @@
+<!-- templates/game/progress_html/progress_list_partial.html -->
+
+{% load static %}
+<div class="category-preview-div-progress">
+    <img src = "{% static 'game/img/navigate_buttons/back_button.svg' %}" id="back-to-categories-button" class = "back-arrow">
+    <img src="{{ category_logo.url }}" class="back-img">
+    <p class="category-writing-progress">{{ task_category }}</p>
+</div>
+<div class="incomplete-progress-div">
+    {% for task in tasks %}
+        <div id="task-content-id" class="task-content-progress task-comp-{{ task.completed }}" data-task-id="{{ task.id }}" data-task-complete="{{ task.completed }}">
+            {% if task.task.top %}
+                <img src="{% static 'game/img/tasks/favourites.svg' %}" class="task-top-img-progress">
+            {% else %}
+                <img src="{% static 'game/img/tasks/favourites_ns.svg' %}" class="task-top-img-progress">
+            {% endif %}
+            <p class = "text-progress">Прогресс прохождения</p>
+
+            <img src="{{ category_logo.url }}" class="task-logo-mini-progress">
+            <p class="task-title-progress">«{{ task.task.title }}»</p>
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Если нужно, добавьте функционал для переключения между выполненными и невыполненными задачами -->

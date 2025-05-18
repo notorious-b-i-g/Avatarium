@@ -1,0 +1,208 @@
+/* Контейнер для полноэкранного изображения */
+.fullscreen-container {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* Фоновое изображение */
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.control-panel {
+    position: absolute;
+    bottom: 2vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 85vw;
+    height: 50px;
+    background: linear-gradient(80.67deg, #009DC8, #455EA7);
+    border-radius: 20px;
+}
+
+
+/* Навигационные иконки */
+.nav-icons {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Стилизованный текст вместо кнопки */
+.single-button {
+    cursor: pointer;
+    font-size: 5.5vw;
+    font-weight: bold;
+    color: #ffffff; /* Цвет текста */
+    transition: color 0.3s ease;
+    padding: 20px 95px; /* Увеличиваем кликабельную область за счёт отступов */
+    white-space: nowrap; /* Запрещает перенос текста */
+    font-family: 'Montserrat', ital;
+    text-decoration: none;
+}
+
+
+/* При наведении меняем цвет текста */
+.single-button:hover {
+    color: #1d8ac0;
+
+}
+
+.avatarium-logo-large {
+    height: 25vh;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 2%;
+    height: 26vh;
+    object-fit: cover;
+    display: block;
+    border-radius: 26%;
+}
+
+
+.wellcome {
+    position: absolute;
+    top: 32vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40vw;
+    white-space: normal;
+    text-align: center;
+    font-size: 4vw; /* Шрифт будет адаптироваться к ширине экрана */
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.we-are-25-thousand{
+    position: absolute;
+    top: 45vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30vw;
+    white-space: normal;
+    text-align: center;
+    font-size: 4vw; /* Шрифт будет адаптироваться к ширине экрана */
+    color: #ffffff;
+    font-family: 'Montserrat', ital;
+    font-weight: 500;
+    line-height: 1; /* Уменьшение межстрочного интервала */
+
+}
+
+.p2t1{
+    position: absolute;
+    top: 15vh;
+    left: 10%;
+    width: 60vw;
+    white-space: normal;
+    text-align: left;
+    font-size: 8.5vw; /* Шрифт будет адаптироваться к ширине экрана */
+    color: #ffffff;
+    line-height: 1; /* Уменьшение межстрочного интервала */
+
+}
+
+.p2t1w1{
+    color: #4CB6E5; /* Устанавливаем цвет для выделенного слова */
+
+}
+
+.p2t2{
+    position: absolute;
+    top: 25vh;
+    left: 10%;
+    width: 80vw;
+    white-space: normal;
+    text-align: left;
+    font-size: 3.5vw; /* Шрифт будет адаптироваться к ширине экрана */
+    color: #ffffff;
+    line-height: 1; /* Уменьшение межстрочного интервала */
+    font-family: 'Montserrat', ital;
+}
+
+.p2t3{
+    position: absolute;
+    top: 36vh;
+    left: 10%;
+    width: 40vw;
+    white-space: normal;
+    text-align: left;
+    font-size: 3.5vw; /* Шрифт будет адаптироваться к ширине экрана */
+    color: #ffffff;
+    line-height: 1.5; /* Уменьшение межстрочного интервала */
+    font-family: 'Montserrat', ital;
+    font-weight: bold;
+
+}
+
+.p2t3w1{
+    color: #4CB6E5; /* Устанавливаем цвет для выделенного слова */
+
+}
+
+.life_balance{
+    position: absolute;
+    top: 42%;
+    left: 54%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 49vh;
+    height: auto;
+
+}
+
+.avatarium-logo-small{
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1vh 1vw;
+    width: 20vw;
+    height: auto;
+}
+
+.p3t1{
+    position: absolute;
+    top: 17vh;
+    left: 12%;
+
+    width: 70vw;
+    white-space: normal;
+    text-align: left;
+    font-size: 5vw; /* Шрифт будет адаптироваться к ширине экрана */
+    color: #ffffff;
+    line-height: 1.2; /* Уменьшение межстрочного интервала */
+    font-family: 'Montserrat', ital;
+    font-weight: 600;
+}
+.p3t1w1{
+    color: #4CB6E5; /* Устанавливаем цвет для выделенного слова */
+
+}
+
+.bad_img{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: auto;
+}

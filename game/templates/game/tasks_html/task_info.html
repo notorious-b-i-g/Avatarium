@@ -1,0 +1,72 @@
+{% load static %}
+
+<div id="task-info-form" class="task-info-form">
+    <div class="govno-div">
+        {% if task.far %}
+            <p class="near-game-writing">Игра на будущее</p>
+        {% else %}
+            <p class="near-game-writing">Ближайшая игра</p>
+        {% endif %}
+
+        {% if not is_completed %}
+            <p id="task-title-title" class="task-title-text" contenteditable="true">{{ task.title }}</p>
+        {% else %}
+            <p id="task-title-title" class="task-title-text">{{ task.title }}</p>
+        {% endif %}
+        <div id="task-paragraph-list" class="task-paragraph-list">
+            {% for paragraph in task_paragraphs %}
+                <div id="task-paragraph-{{ forloop.counter }}"
+                     class="task-paragraph {% if paragraph.completed %}completed-paragraph{% endif %}">
+                    {% if paragraph.completed %}
+                        <img class="task-paragraph-img" id="task-paragraph-img" src="{% static 'game/img/tasks/paragraph.svg' %}" data-paragraph-order="{{ paragraph.order }}">
+                    {% else %}
+                        <img class="task-paragraph-img" id="task-paragraph-img" src="{% static 'game/img/tasks/paragraph_nc.svg' %}" data-paragraph-order="{{ paragraph.order }}">
+
+                    {% endif %}
+                    <p class="task-paragraph-text" contenteditable="{% if not is_completed %}true{% else %}false{% endif %}">{{ paragraph.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        {% if task.top %}
+            <img src="{% static 'game/img/tasks/favourites.svg' %}" id="favourites-flag" class="favourites" data-task-id="{{ task.id }}">
+        {% else %}
+            <img src="{% static 'game/img/tasks/favourites_ns.svg' %}" id="favourites-not-flag" class="favourites" data-task-id="{{ task.id }}">
+        {% endif %}
+        <div class="image-preview-container-noload" id="image-preview-container-task"></div>
+        <input type="file" name="task-images" id="task-image-input" class="task-img-input" style="display: none;" multiple accept="image/*">
+
+    </div>
+    {% if not is_completed %}
+        <img src="{% static 'game/img/tasks/input_img.svg' %}" id="upload-image-button-near" class="upload-image-button">
+    {% endif %}
+
+</div>
+
+
+{% if not is_completed %}
+    <div class="user-comment-div" id="user-comment-div">
+        <form method="post" id="user-comment-form" class="user-comment-form">
+            <p class="user-comment-writing">Дневник благодарности</p>
+            {% csrf_token %}
+            {{ form_user_comment.user_comment }}
+
+            <div class="image-preview-container" id="image-preview-container-comment"></div>
+            <input type="file" name="images" class="user-comment-img-input" style="display: none;" multiple accept="image/*">
+
+        </form>
+        <img src="{% static 'game/img/tasks/input_img.svg' %}" id="upload-image-button" class="upload-image-button">
+        <button type="button" id="create-comment-button" data-task-id="{{ user_task_id }}" class="create-comment-submit">Задание выполнено (+50)</button>
+
+    </div>
+{% else %}
+    <div id="comment-info-form" class="comment-info-form">
+        <p class="user-comment-writing">Дневник благодарности</p>
+        <p class="comment-desc-text">{{ comment }}</p>
+
+        <div class="image-preview-container-comment-noload" id="image-preview-container-comment-noload">
+            {% for image_url in comment_images %}
+                <img src="{{ image_url }}" alt="Comment Image" class="comment-image">
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

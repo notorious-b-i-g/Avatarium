@@ -1,0 +1,81 @@
+{% load static %}
+
+<div id="quest-list" class="quest-list">
+    <p class="quest-writing">Квесты</p>
+    <p class="quest-top">Топ-квесты</p>
+    <div class="top-quests-div">
+        {% for user_quest in incomplete_quests %}
+            {% if user_quest.quest.top %}
+            <div class="quest-content" data-quest-id="{{ user_quest.id }}">
+                {% if user_quest.quest.logo %}
+                    <img src="{{ user_quest.quest.logo.url }}" alt="{{ user_quest.quest.title }}" class="quest-logo">
+                    <p class="quest-disc">{{ user_quest.quest.title }}</p>
+                {% else %}
+                    <p class="quest-disc no-image">«{{ user_quest.quest.title }}»</p>
+                {% endif %}
+                <p class="quest-price">+{{ user_quest.quest.cost }}</p>
+                <img src="{% static 'game/img/quests/goto.svg' %}" class="goto-image">
+            </div>
+            {% endif %}
+
+        {% endfor %}
+    </div>
+
+    <div class="common-quests-div">
+        {% for user_quest in incomplete_quests %}
+            {% if not user_quest.quest.top %}
+            <div class="quest-content" data-quest-id="{{ user_quest.id }}">
+                {% if user_quest.quest.logo %}
+                    <img src="{{ user_quest.quest.logo.url }}" alt="{{ user_quest.quest.title }}" class="quest-logo">
+                    <p class="quest-disc">{{ user_quest.quest.title }}</p>
+                {% else %}
+                    <p class="quest-disc no-image">«{{ user_quest.quest.title }}»</p>
+                {% endif %}
+                <p class="quest-price">+{{ user_quest.quest.cost }}</p>
+                <img src="{% static 'game/img/quests/goto.svg' %}" class="goto-image">
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="completed-quests-div hidden">
+        {% for user_quest in completed_quests %}
+            <div class="quest-content completed" data-quest-id="{{ user_quest.id }}">
+                {% if user_quest.quest.logo %}
+                    <img src="{{ user_quest.quest.logo.url }}" alt="{{ user_quest.quest.title }}" class="quest-logo">
+                    <p class="quest-disc text-completed">«{{ user_quest.quest.title }}»</p>
+                {% else %}
+                    <p class="quest-disc no-image text-completed">{{ user_quest.quest.title }}</p>
+                {% endif %}
+                <img src="{% static 'game/img/quests/goto.svg' %}" class="goto-image">
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="quest-menu">
+        <p id="all-quests" class="all-quests active-border">Все квесты</p>
+        <p id="completed-quests" class="completed-quests">Выполненные</p>
+    </div>
+</div>
+<div id="quest-info" class="quest-info hidden">
+    <div class="avatar-wrapper">
+        <img src="{{ user.avatarka.url }}" alt="User Avatar" class="user-avatar">
+    </div>
+
+    <div class="balance-quest-div">
+        <div class="balance-quest">
+            <img src="{% static 'game/img/quests/dollar.svg' %}" class="dollar-img-quest">
+            <p class="balance-title-quest">Баланс:</p>
+            <p class="balance-amount-quest">{{ user.balance }} очков</p>
+        </div>
+        <div class="progress-wrapper-quest">
+            <div class="progress-bar-fill-quest-menu" style="width: {{ calendar_progress_percent }}%;"></div>
+
+        </div>
+        <div class="weekly-progress-percent-quest-menu">{{ calendar_progress_percent }}%</div>
+    </div>
+    <div id="quest-info-div">
+
+    </div>
+</div>

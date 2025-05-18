@@ -1,0 +1,24 @@
+<!-- progress_categories_partial.html -->
+{% load static %}
+
+<div class="games-container">
+    {% for category in task_categories %}
+        <div class="categories-content-progress">
+            <p class="category-progress-title">Прогресс прохождения категории</p>
+            <button class="category-button" id="{{ category.category_name }}">
+                <img src="{{ category.logo.url }}" alt="{{ category.category_name }}" class="task-logo-progress">
+            </button>
+            <p class="category-name-progress">{{ category.title }}</p>
+            <div class="progress-bar">
+                <div class="progress-bar-fill" style="width: {{ category.progress_percent|floatformat:2 }}%;"></div>
+            </div>
+            <p class="category-stats">
+                {% if category.total_tasks > 0 %}
+                    {{ category.completed_tasks }} из {{ category.total_tasks }}
+                {% else %}
+                    0
+                {% endif %}
+            </p>
+        </div>
+    {% endfor %}
+</div>

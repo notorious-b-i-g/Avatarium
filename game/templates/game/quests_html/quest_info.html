@@ -1,0 +1,19 @@
+{% load static %}
+
+
+
+
+
+<div class="quest-info-div">
+    <img src="{% static 'game/img/quests/goback.svg' %}" class="goback-button-quest" id="goback-button">
+    <p class="quest-title">{{ title }}</p>
+    <p class="quest-description">{{ description }}</p>
+    <p class="quest-sub-description">{{ sub_description }}</p>
+    <img src="{{ image }}" class="quest-image">
+
+</div>
+{% if not completed %}
+    <p id="complete-button-incomplete" class="complete-button" data-quest-id="{{ quest_id }}" data-price="{{ price }}">Готово (+{{ price }})</p>
+{% else %}
+    <p class="complete-button">Уже выполнено</p>
+{% endif %}

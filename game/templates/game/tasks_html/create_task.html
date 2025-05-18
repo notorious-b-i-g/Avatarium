@@ -1,0 +1,89 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'game/css/task_create.css' %}">
+</head>
+<p class="task-create-title">Создать новую игру</p>
+
+<div id="task-create-menu" class="task-create-menu">
+    <div class="govno-percent-div">
+        <p class="weekly-progress-writing">Прогресс недели</p>
+        <div class="progress-wrapper">
+            <div class="progress-bar-fill-task-menu" style="width: {{ calendar_progress_percent }}%;"></div>
+
+        </div>
+        <div class="weekly-progress-percent-task-menu">{{ calendar_progress_percent }}%</div>
+
+    </div>
+    <div class="avatar-wrapper">
+        <img src="{{ user.avatarka.url }}" alt="User Avatar" class="user-avatar">
+    </div>
+    <img src="{% static 'game/img/quests/goback.svg' %}" id="goback-button" class="goback-button">
+
+    <div class="form-div-near">
+        <img src="{% static 'game/img/tasks/favourites_ns.svg' %}" id="favourites-img-near" class="favourites">
+        <form method="post" id="create-task-form-near" class="form-inputs-near" enctype="multipart/form-data">
+            <p class="game-writing">Ближайшая игра</p>
+
+            {% csrf_token %}
+            {{ task_form.title }}<br>
+            <div id="form-container-near">
+                {{ form_set.management_form }}
+                {% for form in form_set %}
+                    <div class="task-item-form">
+                        {{ form.as_ul }}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Поле для загрузки изображений -->
+
+            <!-- Контейнер для отображения миниатюр -->
+            <div class="image-preview-container" id="image-preview-container-near"></div>
+            <input type="hidden" name="cost" id="cost-field-near" value="100">
+            <input type="hidden" name="top" id="top-field-near" value="False">
+            <input type="hidden" name="task_category" value="{{ task_category }}">
+            <input type="hidden" name="task_type" value="False">
+            <input type="file" name="images" class="task-img-input" style="display: none;" multiple accept="image/*">
+
+        </form>
+        <button type="button" id="create-task-button-near" class="create-task-submit">Создать игру</button>
+        <img src="{% static 'game/img/tasks/input_img.svg' %}" id="upload-image-button-near" class="upload-image-button">
+
+
+    </div>
+
+
+    <div class="form-div-far">
+        <img src="{% static 'game/img/tasks/favourites_ns.svg' %}" id="favourites-img-far" class="favourites">
+        <form method="post" id="create-task-form-far" class="form-inputs-far">
+            <p class="game-writing">Игра на будущее</p>
+
+            {% csrf_token %}
+            {{ task_form.title }}<br>
+            <div id="form-container-far">
+                {{ form_set.management_form }}
+                {% for form in form_set %}
+                    <div class="task-item-form">
+                        {{ form.as_ul }}
+                    </div>
+                {% endfor %}
+            </div>
+            <input type="file" name="images" class="task-img-input" style="display: none;" multiple accept="image/*">
+
+            <!-- Контейнер для отображения миниатюр -->
+            <div class="image-preview-container" id="image-preview-container-far"></div>
+
+            <input type="hidden" name="cost" id="cost-field-far" value="100">
+            <input type="hidden" name="top" id="top-field-far" value="False">
+            <input type="hidden" name="task_category" value="{{ task_category }}">
+            <input type="hidden" name="task_type" value="True">
+
+        </form>
+        <button type="button" id="create-task-button-far" class="create-task-submit">Создать игру</button>
+        <img src="{% static 'game/img/tasks/input_img.svg' %}" id="upload-image-button-far" class="upload-image-button">
+
+    </div>
+
+</div>
+
+

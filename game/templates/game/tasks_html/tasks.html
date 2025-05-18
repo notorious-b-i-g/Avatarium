@@ -1,0 +1,50 @@
+{% load static %}
+
+
+<div class="tasks-menu-list-div">
+    <p class="category-game-title">Игры</p>
+    <div id="categories-menu-div" class="categories-menu-div">
+        <p class="categories">Категории</p>
+        <div class="categories-div" id= "categories-div">
+            {% for category in task_categories %}
+                <div class="categories-content">
+                    <button  class="category-button" id="{{ category.category_name }}">
+                        <img src="{{ category.logo.url }}" alt="{{ category.category_name }}" class="task-logo">
+                    </button>
+                    <p class="category-name"> {{ category.title }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="task-menu-div" class="task-menu-div hidden" >
+        <div id="task-list" class="task-list"> </div>
+    </div>
+</div>
+<div id="task-create-menu" class="task-create-menu hidden">
+
+</div>
+
+<div id="task-info" class="task-info hidden"
+    data-csrf-token="{{ csrf_token }}"
+    data-user-id="{{ user.id|default:'null' }}">
+    <p class="now-playing-writing">Сейчас играю</p>
+    <div class="govno-percent-div">
+        <p class="weekly-progress-writing">Прогресс недели</p>
+        <div class="progress-wrapper">
+            <div class="progress-bar-fill-task-menu" style="width: {{ calendar_progress_percent }}%;"></div>
+
+        </div>
+        <div class="weekly-progress-percent-task-menu">{{ calendar_progress_percent }}%</div>
+
+    </div>
+
+    <img src="{% static 'game/img/tasks/goback.svg' %}" id="goback-button" class="goback-button">
+    <div class="avatar-wrapper-task">
+        <img src="{{ user.avatarka.url }}" alt="User Avatar" class="user-avatar-task">
+    </div>
+
+    <div id="task-info-div" class="task-info-div">
+
+    </div>
+</div>

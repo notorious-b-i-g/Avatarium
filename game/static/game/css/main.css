@@ -1,0 +1,146 @@
+html, body {
+    overflow: hidden; /* ��������� ������������ ��������� */
+    height: 100vh; /* ��������� ������ �� 100% ������ ������ */
+    margin: 0;
+}
+
+.fullscreen-container {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-image: url('../img/background_1.png');
+
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.control-panel {
+    position: absolute;
+    bottom: 2vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    width: 85vw;
+    height: 50px;
+    background: linear-gradient(80.67deg, #009DC8, #455EA7);
+    border-radius: 20px;
+}
+
+
+.nav-icons {
+    display: flex;
+    list-style: none;
+    margin: 0;
+}
+
+.nav-item {
+    margin-right: 7vw;
+}
+
+.single-button {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.single-button img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.single-button:hover {
+    transform: scale(1.2);
+}
+
+.single-button.pressed {
+    filter: invert(15%) sepia(88%) saturate(2164%) hue-rotate(162deg) brightness(96%) contrast(81%);
+}
+
+
+.upper-panel{
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85vw;
+    height: 42px;
+    border-radius: 20px;
+    border: 1px solid #0AB0D7;
+    background-color: transparent;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.star-upper-panel{
+    position: absolute;
+    left: 70%;
+}
+
+.person-upper-panel{
+    position: absolute;
+    left: 86%;
+    height: 30px;
+
+}
+
+.avatarium-upper-panel{
+    position: absolute;
+    left: 35%;
+    height: 15px;
+}
+
+p.user-name-upper-panel {
+    position: absolute;
+    left: 7%;
+    margin: 0;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 3.5vw;
+    line-height: 21px;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+}
+/*
+p.user-name-upper-panel::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -30%;
+    transform: translateY(-50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+}
+
+#loading-screen123 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: black;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    background-color: #001e31
+}
+*/

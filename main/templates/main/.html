@@ -1,0 +1,62 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Р“Р»Р°РІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°{% endblock %}
+
+
+{% block page_1 %}
+    <img id="background-img1" src="{% static 'main/img/about_0.svg' %}" class="background-image">
+    <img src="{% static 'main/img/avatarium_logo.svg' %}" alt="Р›РѕРіРѕС‚РёРї РђРІР°С‚Р°СЂРёСѓРј" class="avatarium-logo-large" id="logo-large">
+    <p class="wellcome"> {{username}}</p>
+    <p class="we-are-25-thousand"> РќР°СЃ СѓР¶Рµ С‚С‹СЃСЏС‡Рё РїРѕ РІСЃРµРјСѓ РјРёСЂСѓ </p>
+    <div class="control-panel">
+        <ul class="nav-icons">
+            <li><span id="custom-button1" class="single-button" onclick="loadNextImage()">РЇ СЃ РІР°РјРё!</span></li>
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block page_2 %}
+    <img id="background-img2" src="{% static 'main/img/about_1.svg' %}" alt="Р”СЂСѓРіРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ" class="background-image">
+    <p class="p2t1">РђРІР°С‚Р°СЂРёСѓРј - СЌС‚Рѕ <span class="p2t1w1"> РёРіСЂР°,</span></p>
+    <p class="p2t2">РєРѕС‚РѕСЂР°СЏ РїРѕРјРѕР¶РµС‚ С‚РµР±Рµ РІРѕРїР»РѕС‚РёС‚СЊ СЃРІРѕСЋ Р¶РµР»Р°РµРјСѓСЋ Р¶РёР·РЅСЊ РІ СЂРµР°Р»СЊРЅРѕСЃС‚СЊ - С†РµР»Рё, Р¶РµР»Р°РЅРёСЏ, РјРµС‡С‚С‹</p>
+    <p class="p2t3"><span class="p2t3w1"> РџРЈРўР¬</span> Рљ Р›РЈР§РЁР•Р™ Р’Р•Р РЎРР РЎР•Р‘РЇ</p>
+    <img src="{% static 'main/img/life_balance.svg' %}" class="life_balance">
+    <img src="{% static 'main/img/avatarium_logo.svg' %}" class="avatarium-logo-small">
+    <div class="control-panel">
+        <ul class="nav-icons">
+            <li><span id="custom-button2" class="single-button" onclick="loadNextImage()">РЇ СЃ РІР°РјРё!</span></li>
+        </ul>
+    </div>
+
+
+{% endblock %}
+
+{% block page_3 %}
+    <img id="background-img3" src="{% static 'main/img/about_2.svg' %}" alt="Р”СЂСѓРіРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ" class="background-image">
+    <p class="p3t1"> РСЃРїРѕР»СЊР·СѓР№ <span class="p3t1w1">РёРЅСЃС‚СЂСѓРєС†РёСЋ</span> Рє СЃРІРѕРёРј РІСЂРѕР¶РґРµРЅРЅС‹Рј С‚Р°Р»Р°РЅС‚Р°Рј</p>
+    <img src="{% static 'main/img/avatarium_logo.svg' %}" class="avatarium-logo-small">
+
+    <div class="control-panel">
+        <ul class="nav-icons">
+         	<a id="custom-button3" class="single-button" href="https://sakanian.ru/game/?username={{ username }}" onclick="openLinkInWebApp(event)">
+    			Хочу узнать
+		</a>
+        </ul>
+    </div>
+
+{% endblock %}
+<script>
+    function openLinkInWebApp(event) {
+        event.preventDefault();  // Предотвращаем стандартное поведение ссылки
+        const url = event.currentTarget.getAttribute('href');
+        if (window.Telegram.WebApp) {
+            // Используем Telegram WebApp API для открытия ссылки
+            window.Telegram.WebApp.openLink(url);
+        } else {
+            // Если не в WebApp, просто переходим по ссылке
+            window.location.href = url;
+        }
+    }
+</script>

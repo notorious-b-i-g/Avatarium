@@ -1,0 +1,126 @@
+{% load static %}
+
+<div class="challenge-container">
+    <div class="header-challenge">
+        <div class="title-and-counter-div">
+            <div class="title-challenge">
+                <p>Челлендж</p>
+                <p class="year-challenge">{{ current_year }}</p>
+            </div>
+            <div class="goto-counter-div" id="custom-button7">
+                <img src="{% static 'game/img/counter/speed_logo.svg' %}" class="speed_logo" id="speed_logo">
+                <p class="goto-counter-writing" id="goto-counter-writing">Счётчик целей</p>
+            </div>
+        </div>
+            <div class="pre-pre-cirlce">
+                <div class="pre-circle">
+                    <div class="circle" style="--percentage: {{ percent_day_year }};">
+                      <div class="circle-inner">
+                        <span class="month-bar">{{ current_month }}<br><span class="line-break-bar">{{ day_of_year }} из 365</span></span>
+                      </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="tasks-challenge">
+        <div class ='govno-challenge-div'>
+            <div class="list-container-challenge">
+                <ul class="list-challenge">
+                    {% for daily_task in user_daily_tasks %}
+                    <li class="item-challenge" data-task-id="{{ daily_task.id }}">
+                        <div class="name-container-challenge">
+                            <div class="test-challenge-div">
+                                <span class="challenge-number">{{ forloop.counter }}.</span>
+                            </div>
+                            <input class="name-input-challenge" type="text" id="name-input-challenge-{{ daily_task.id }}"
+                                   value="{% if daily_task.title and daily_task.title != 'None' %}{{ daily_task.title }}{% else %}{% endif %}"
+                                   placeholder="Задача {{ daily_task.task_number }}" maxlength="28">
+
+                            <div class="status-container-challenge" data-completed="{{ daily_task.completed|yesno:"true,false" }}">
+                                {% if daily_task.completed %}
+                                    <div class="status-check-challenge"></div>
+                                {% else %}
+                                    <div class="status-circle-challenge"></div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="blue-container">
+                <div class="weekly-block-challenge">
+                    <div class="weekly-header-challenge">
+                        <p>Вызов недели</p>
+                    </div>
+                </div>
+                <input type="text" class="weekly-input-challenge" id="weekly-input-challenge"
+                       value="{{ weekly_challenge_text|default:'' }}" placeholder="Напишите вызов">
+
+                <div class="complete-all-day">
+                    <p class="today-writing">Сегодня</p>
+                    {% if week_task_completed %}
+                        <img src="{% static 'game/img/day_circle.svg' %}" class="complete-all-day-img" id="complete-all-day-img">
+                    {% else %}
+                        <img src="{% static 'game/img/day_circle_nc.svg' %}" class="complete-all-day-img" id="complete-all-day-img">
+                    {% endif %}
+                </div>
+
+                <div class="chart-challenge">
+                    {% for day in weekdays %}
+                        {% if today_weekday_index == forloop.counter %}
+                            {% if day.completed_count == 0 %}
+                            <div class ="today">
+                                <div class="weekday-container">
+                                    <div class="bar-challenge no-tasks-challenge" title="{{ day.name }}">
+                                        <div class="point-bar-challenge"></div>
+                                    </div>
+                                    <div class="day-challenge {% if day.number == current_weekday_number %}selected-day-challenge{% endif %}">
+                                        <span>{{ day.short_name }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class ="today">
+                                <div class="weekday-container">
+                                    <div class="bar-challenge has-tasks-challenge" title="{{ day.name }}"
+                                         style="height: calc({{ day.completed_count }}px * 7);">
+                                        <div class="fill-bar-challenge"></div>
+                                    </div>
+                                    <div class="day-challenge {% if day.number == current_weekday_number %}selected-day-challenge{% endif %}">
+                                        <span>{{ day.short_name }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% else %}
+                            {% if day.completed_count == 0 %}
+                            <div class="weekday-container">
+                                <div class="bar-challenge no-tasks-challenge" title="{{ day.name }}">
+                                    <div class="point-bar-challenge"></div>
+                                </div>
+                                <div class="day-challenge {% if day.number == current_weekday_number %}selected-day-challenge{% endif %}">
+                                    <span>{{ day.short_name }}</span>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="weekday-container">
+                                <div class="bar-challenge has-tasks-challenge" title="{{ day.name }}"
+                                     style="height: calc({{ day.completed_count }}px * 7);">
+                                    <div class="fill-bar-challenge"></div>
+                                </div>
+                                <div class="day-challenge {% if day.number == current_weekday_number %}selected-day-challenge{% endif %}">
+                                    <span>{{ day.short_name }}</span>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'game/css/challenge.css' %}">
+<script src="{% static 'game/js/challenge.js' %}"></script>
