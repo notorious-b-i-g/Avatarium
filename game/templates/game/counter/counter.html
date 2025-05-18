@@ -1,0 +1,94 @@
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Счётчики</title>
+    <link rel="stylesheet" href="{% static 'game/css/counter.css' %}">
+</head>
+<body>
+    <div class="counter-img-div">
+        <img src="{% static 'game/img/counter/counter.svg' %}" class="counter-img">
+        <p class="counter-title-text">Счетчик</p>
+        <p class="counter-title-text-second">целей</p>
+
+    </div>
+    <div class="counter-main-div" id="counter-main-div">
+        <div class="counters-list" id="counters-list">
+            {% for counter in counters %}
+                <div class="counter" id="counter"
+                     data-counter-id="{{ counter.id }}"
+                     data-counter-score="{{ counter.score }}"
+                     data-counter-target="{{ counter.target }}">
+                    <div class="counter-data-div">
+                        <p class="counter-name">{{ counter.name }}</p>
+                        <p class="counter-score">{{ counter.score }}/{{ counter.target }}</p>
+                    </div>
+
+                        <span class="increment-button">+1</span>
+                    <img src="{% static 'game/img/counter/arrow.svg' %}" class="edit-button">
+                </div>
+            {% endfor %}
+        </div>
+        <div class="add-counter-div" id="add-counter-div">
+            <img src="{% static 'game/img/counter/counter_circles.svg' %}" class="counter_circles">
+            <p class="add-new-counter-writing">Создать новый счётчик</p>
+            <img src="{% static 'game/img/tasks/plus.svg' %}" class="plus-logo">
+        </div>
+    </div>
+
+    <!-- Форма создания нового счётчика -->
+    <div class="counter-menu-div hidden" id="counter-menu-div">
+        <div class="counter-menu-writings">
+            <p class="counter-create-buttons" id="cancellation-button">Отмена</p>
+            <p class="counter-create-buttons" id="create-counter-button">Готово</p>
+        </div>
+        <div class="counter-stats-div" id="counter-form">
+            <input type="text" name="name" class="input-counter-name" placeholder="Название счётчика" maxlength="16" required id="id_name">
+        </div>
+        <div class="counter-stats-div-sec">
+            <div class="counter-stats-line-target" id="counter-stats-line-target">
+                <p class="counter-quantity">Цель</p>
+                <input type="text" class="counter-quantity-input" placeholder="Количество">
+            </div>
+            <div class="counter-stats-line-current" id="counter-stats-line-current-create">
+                <p class="counter-quantity">Счёт</p>
+                <!-- Здесь значение по умолчанию (0) -->
+                <p class="counter-quantity-data" id="counter-quantity-data-current-create">0</p>
+            </div>
+        </div>
+        <div class="add-counter">
+            <img src="{% static 'game/img/counter/plus_counter.svg' %}" class="remove-counter-img">
+            <p class="counter-create-buttons" id="create-target-counter-button">Создать счетчик целей</p>
+        </div>
+    </div>
+
+    <!-- Форма редактирования счётчика -->
+    <div class="counter-menu-div hidden" id="counter-edit-menu-div">
+        <div class="counter-menu-writings">
+            <p class="counter-create-buttons" id="edit-cancellation-button">Отмена</p>
+            <p class="counter-create-buttons" id="edit-counter-button">Готово</p>
+        </div>
+        <div class="counter-stats-div" id="edit-counter-form">
+            <input type="text" name="name" class="input-counter-name" placeholder="Название счётчика" maxlength="16" required id="edit_id_name">
+        </div>
+        <div class="counter-stats-div-sec">
+            <div class="counter-stats-line-target" id="edit-counter-stats-line-target">
+                <p class="counter-quantity">Цель</p>
+                <input type="text" class="counter-quantity-input" placeholder="Количество">
+            </div>
+            <div class="counter-stats-line-current" id="counter-stats-line-current-edit">
+                <p class="counter-quantity">Счёт</p>
+                <p class="counter-quantity-data" id="counter-quantity-data-current">0</p>
+            </div>
+        </div>
+        <div class="remove-counter" id="remove-counter">
+            <img src="{% static 'game/img/counter/remove_counter.svg' %}" class="remove-counter-img">
+            <p class="remove-counter-writing">Удалить счётчик</p>
+        </div>
+    </div>
+
+    <div id="content" data-csrf-token="{{ csrf_token }}"></div>
+
+    <script src="{% static 'game/js/counter.js' %}"></script>
+</body>
+</html>

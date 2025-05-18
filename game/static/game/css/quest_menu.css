@@ -1,0 +1,168 @@
+.quest-menu {
+    position: absolute;
+    width: 90%;
+    top: 50%;
+    left: 46%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row; /* Горизонтальное направление */
+    justify-content: center; /* Центрирование элементов по горизонтали */
+    align-items: center; /* Центрирование элементов по вертикали */
+    gap: 8vw; /* Промежуток между элементами */
+}
+
+.all-quests, .completed-quests {
+    font-size: 3.5vw; /* Адаптивный размер шрифта */
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    font-weight: bold;
+    cursor: pointer; /* Указатель, показывающий, что это кликабельные элементы */
+    width: 35vw; /* Фиксированная ширина для предотвращения смещения */
+    box-sizing: border-box; /* Включаем рамку в расчет ширины */
+
+    /* Добавляем базовую рамку с прозрачным цветом */
+    border: 1.5px solid transparent;
+
+    /* Добавляем плавный переход для свойства border-color */
+    transition: border-color 0.3s ease, border-radius 0.3s ease;
+}
+
+.active-border {
+    border-color: white; /* Изменение цвета рамки на белый */
+    border-radius: 30px;
+}
+
+.quest-writing {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 5.5vw; /* Адаптивный размер шрифта */
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    font-weight: 800; /* Extrabold */
+}
+
+.quest-top {
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    transform: translateX(-50%);
+    font-size: 4.5vw; /* Адаптивный размер шрифта */
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    font-weight: 700;
+}
+
+
+.top-quests-div {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 25vh; /* Фиксированная высота 20% от высоты видимой области страницы */
+    width: 90vw; /* Ширина 90% от ширины видимой области окна */
+    overflow-y: auto; /* Включаем прокрутку */
+    display: flex;
+    flex-direction: column; /* Элементы располагаются вертикально */
+    gap: 2vh; /* Отступы между элементами */
+}
+
+.quest-content {
+    position: relative;
+    display: flex;
+    height: 6vh;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    background: #ffffff;
+    background-size: cover;
+    border-radius: 22px;
+    line-height: 14px;
+    letter-spacing: -0.01em;
+    margin-bottom: 2vh;
+}
+
+
+.quest-logo {
+    width: 4vw;
+    height: auto;
+    margin-right: 10px;
+    margin-left: 10px;
+
+}
+
+.quest-disc {
+    margin: 0;
+    font-size: 3.5vw;
+    font-family: 'Montserrat', sans-serif;
+    color: #41576B;
+    width: 70%;
+    font-weight: 600;
+    word-wrap: break-word;
+}
+
+.no-image{
+    margin-left: 25px;
+
+}
+.quest-price {
+    margin: 0;
+    font-size: 3.5vw;
+    font-family: 'Montserrat', sans-serif;
+    color: #0AB0D7;
+    max-width: 70%;
+    font-weight: 700;
+    word-wrap: break-word;
+    right: 6%;
+    position: absolute;
+}
+
+.common-quests-div {
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 30vh; /* Фиксированная высота 20% от высоты видимой области страницы */
+    width: 90vw; /* Ширина 90% от ширины видимой области окна */
+    overflow-y: auto; /* Включаем прокрутку */
+}
+
+.completed-quests-div {
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 30vh; /* Фиксированная высота 20% от высоты видимой области страницы */
+    width: 90vw; /* Ширина 90% от ширины видимой области окна */
+    overflow-y: auto; /* Включаем прокрутку */
+    display: flex;
+    flex-direction: column; /* Элементы располагаются вертикально */
+    gap: 2vh; /* Отступы между элементами */
+}
+
+.goto-image {
+    position: absolute;
+    width: 7px;
+    height: auto;
+    right: 2vw;
+}
+.hidden {
+    display: none;
+}
+
+.completed {
+    background: linear-gradient(45deg, #2875BB, #0F80AB);
+    background-size: cover;
+
+}
+
+.text-completed {
+    color: white;
+}

@@ -1,0 +1,140 @@
+{% load static %}
+
+<div class="profile_activate_login">
+    <div class="info-box">
+        <p class="login">Логин: <span class="name">{{ user.nickname|default:user.telegram_name }}</span></p>
+        <p class="phone">{{ user.phone}}</p>
+    </div>
+    <div class="profile-activate">
+        {% if activate %}
+            <div class="activate-cont">
+                <p class="activate-text">Аккаунт активирован</p>
+            </div>
+        {% else %}
+            <div class="activate-cont">
+                <p class="activate-text">Аккаунт неактивирован</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+<div class="ava-profile">
+    <img src="{{ user.avatarka.url }}" alt="Avatar" class="ava">
+    <img id="add-avatar-button" class="add-avatar-button" src="{% static 'game/img/avatar/plus_icon.svg' %}" alt="Add Avatar">
+</div>
+<div id="avatar-modal" class="modal">
+    <div class="modal-content">
+        <span id="close-modal" class="close"></span>
+        <p class ="add-photo">Добавить фото</p>
+        <form id="upload-avatar-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" id="avatar-file-input" name="avatar" accept="image/*" style="display: none;">
+        </form>
+
+        <div id="photo-container-load" class="photo-container">
+            <img id="upload-photo-icon" class="upload-photo-icon" src="{% static 'game/img/avatar/upload_photo.svg' %}" alt="Add photo">
+            <p id="upload-photo-button" class="modal-button">Загрузить фото </p>
+        </div>
+        <div id="photo-container-make" class="photo-container">
+            <img id="take-photo-icon" class="take-photo-icon" src="{% static 'game/img/avatar/make_photo.svg' %}" alt="Add photo">
+            <p id="take-photo-button" class="modal-button">Сделать снимок</p>
+        </div>
+
+        <div id="camera-container" style="display: none;">
+            <video id="video" width="100%" autoplay></video>
+            <span id="capture-button" class="modal-button">Сделать снимок</span>
+        </div>
+    </div>
+</div>
+
+<div id="profile-content" class="profile-content">
+<!-- Кнопка для открытия модального окна -->
+    <button id="progess-passing" class="profile-button">Прогресс прохождения</button>
+    <button id="my-purchases" class="profile-button">Мои покупки</button>
+    <button id="edit-profile-button" class="profile-button">Профиль</button>
+    <button id="questions-answers" class="profile-button-down">Вопросы и ответы</button>
+    <div class="social-panel">
+    <div class="text">Соцсети</div>
+    <a href="https://vk.com/matritsa_izobiliya" target="_blank">
+        <img src="{% static 'game/img/vk.svg' %}" alt="VK">
+    </a>
+    <a href="https://t.me/matrixpractikum" target="_blank">
+        <img src="{% static 'game/img/telega.svg' %}" alt="Telegram">
+    </a>
+    <a href="https://www.youtube.com/@UlyanovMaxim/videos" target="_blank">
+        <img src="{% static 'game/img/yt.svg' %}" alt="YouTube">
+    </a>
+    </div>
+    <p class="another-questions" onclick="window.location.href='https://t.me/maxim_ulyanov';">
+        Остались вопросы? Напишите нам: @maxim_ulyanov
+    </p>
+</div>
+
+<!-- Модальное окно для редактирования профиля -->
+<div id="profile-modal" class="hidden">
+    <div class="modal-content-profile">
+        <img src="{% static 'game/img/quests/goback.svg' %}" class="close-button">
+        <p class="title">Профиль</p>
+
+        <form id="profile-form" class="form-profile">
+            {% csrf_token %}
+
+            <!-- Существующие поля -->
+            <div class="form-group">
+                <label for="name" class="input-title">Имя</label>
+                {% if user.nickname is None %}
+                    <input type="text" class="input-form" id="name" name="name" value="{{ user.telegram_name }}" required>
+                {% else %}
+                    <input type="text" class="input-form" id="name" name="name" value="{{ user.nickname }}" required>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="phone" class="input-title">Телефон</label>
+                {% if user.phone %}
+                    <input type="text" class="input-form" id="phone" name="phone" value="{{ user.phone }}">
+                {% else %}
+                    <input type="text" class="input-form" id="phone" name="phone">
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="input-title">E-mail</label>
+                {% if user.email %}
+                    <input type="email" class="input-form" id="email" name="email" value="{{ user.email }}" required>
+                {% else %}
+                    <input type="email" class="input-form" id="email" name="email"  required>
+                {% endif %}
+
+            </div>
+
+            <!-- Новые поля -->
+            <div class="form-group">
+                <label for="gender" class="input-title">Пол</label>
+                <select name="gender" id="gender" class="input-form">
+                    <option value="male" {% if user.gender == 'male' %}selected{% endif %}>Мужчина</option>
+                    <option value="female" {% if user.gender == 'female' %}selected{% endif %}>Женщина</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="date_of_birth" class="input-title">Дата рождения</label>
+                <input type="date" class="input-form" id="date_of_birth" name="date_of_birth" value="{{ user.date_of_birth|date:'Y-m-d' }}">
+            </div>
+
+            <!-- Кнопка сохранения -->
+            <button id="save-changes-button" class="input-form save-button" type="button">Сохранить изменения</button>
+        </form>
+    </div>
+</div>
+<div id="faq-div" class="faq-div hidden">
+    <p class="faq-writing">Вопросы и ответы</p>
+    <img src="{% static 'game/img/quests/goback.svg' %}" id="close-button-faq" class="close-button">
+    <div id="faq-list" class="faq-list">
+        {% for question in questions %}
+            <div class="question-content">
+                <p class="question-title">{{ question.question }}</p>
+                <p class="question-answer">{{ question.answer }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Саканян Артак Севакович - Визитка</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('{% static "main/img/background.jpg" %}') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .profile-image {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="{% static 'main/img/profile.jpg' %}" alt="Фотография Саканяна Артака Севаковича" class="profile-image">
+        <h1>Саканян Артак Севакович</h1>
+        <div class="contacts">
+            <p>Телефон: <a href="tel:+79852143963">8 985 214 39 63</a></p>
+            <p>Email: <a href="mailto:sakanyan1488@gmail.com">sakanyan1488@gmail.com</a></p>
+        </div>
+        <p>Обо мне: Я профессионал в сфере лайф коучинга, специализирующийся на денежно-морофонных операциях. У меня есть значительный опыт работы с различными клиетами, мой опыт с клиентом , которому нужны деньги: чтобы накомпить двенадцать миллионов , надо откладывать миллион каждый месяц. Помогаю стремится к постоянному профессиональному развитию и решению сложных задач, способствующих улучшению качества работы и жизни.</p>
+    </div>
+</body>
+</html>

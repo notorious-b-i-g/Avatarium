@@ -1,0 +1,135 @@
+<!-- templates/game/index.html -->
+{% load static %}
+<div id="clicker-container"
+     data-csrf-token="{{ csrf_token }}"
+     data-initial-balance="{{ initial_balance|default:0 }}"
+     data-user-id="{{ user.id|default:'null' }}">
+
+    <div id="slider-container">
+        <div class="progress-bar-background">
+            <div id="progress-bar"></div>
+        </div>
+        <div id="slider-content">
+            {% for item in slider %}
+                {% if item %}
+                    <div class="slider-item">
+                        <!--{% if item.promo.description %}
+                        <p class = "slider-title">{{ item.promo.description }}</p>
+                        {% endif %}-->
+                        {% if item.promo_img %}
+                            <img src="{{ item.promo_img.url }}" alt="{{ item.promo.name }}" class="slider-img"
+                                 onclick="window.location.href='{{ item.url }}'">
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </div>
+    <div class="ava-place">
+        <!-- Изображение аватара -->
+        <img src="{{ user.avatarka.url }}" alt="Avatar" class="ava">
+
+        <!-- Кнопка добавления аватара -->
+        <img id="add-avatar-button" class="add-avatar-button" src="{% static 'game/img/avatar/plus_icon.svg' %}" alt="Add Avatar">
+    </div>
+    <img id="year-govno-jopa" class="year-govno-jopa" src="{% static 'game/img/365_mm.svg' %}">
+    <div class="play-game-cont" id="game-button">
+        <p class="play-game-text" >Играть</p>
+    </div>
+    <div class="grafik-cont">
+        <img src="{% static 'game/img/avatar/grafik.svg' %}" class="grafik-img">
+    </div>
+    <div class="chakra-cont">
+        <img src="{% static 'game/img/avatar/chakra.svg' %}" class="chakra-img">
+    </div>
+    <div class="container-tasks-quests">
+        <div class="category-cont-avatar" onclick="window.location.href='https://avatarium.life/'" style="cursor: pointer; background: None;">
+            <p class="category-text">AVATARIUM</p>
+            <img src="{% static 'game/img/avatar/avatarium.png' %}" class="avatarium-img">
+        </div>
+
+        <div class="category-cont-avatar">
+            <!--<p class="nazvanie-classa">Название игры:{{tasks.title}}</p> -->
+            <p class="category-text">Топ-игра</p>
+            <img src="{% static 'game/img/avatar/top_game_pass.png' %}" class="avatarium-img" id="top-uncompleted-task" data-task-id="{{ top_uncompleted_task.id }}">
+
+        </div>
+        <div class="category-cont-avatar">
+            <!--<p class="nazvanie-classa">Название игры:{{quests.title}}</p> -->
+            <p class="category-text">Топ-квест</p>
+            <img src="{% static 'game/img/avatar/top_quest_pass.png' %}" class="avatarium-img" id="top-uncompleted-quest" data-quest-id="{{ top_uncompleted_quest.id }}">
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Модальное окно для обновления аватара -->
+<div id="avatar-modal" class="modal">
+    <div class="modal-content">
+        <span id="close-modal" class="close"></span>
+        <p class ="add-photo">Добавить фото</p>
+        <form id="upload-avatar-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" id="avatar-file-input" name="avatar" accept="image/*" style="display: none;">
+        </form>
+
+        <div id="photo-container-load" class="photo-container">
+            <img id="upload-photo-icon" class="upload-photo-icon" src="{% static 'game/img/avatar/upload_photo.svg' %}" alt="Add photo">
+            <p id="upload-photo-button" class="modal-button">Загрузить фото </p>
+        </div>
+        <div id="photo-container-make" class="photo-container">
+            <img id="take-photo-icon" class="take-photo-icon" src="{% static 'game/img/avatar/make_photo.svg' %}" alt="Add photo">
+            <p id="take-photo-button" class="modal-button">Сделать снимок</p>
+        </div>
+
+        <div id="camera-container" style="display: none;">
+            <video id="video" width="100%" autoplay></video>
+            <span id="capture-button" class="modal-button">Сделать снимок</span>
+        </div>
+    </div>
+</div>
+
+<div id="quest-info" class="quest-info hidden">
+    <div class="avatar-wrapper">
+        <img src="{{ user.avatarka.url }}" alt="User Avatar" class="user-avatar">
+    </div>
+
+    <div class="balance-quest-div">
+        <div class="balance-quest">
+            <img src="{% static 'game/img/quests/dollar.svg' %}" class="dollar-img-quest">
+            <p class="balance-title-quest">Баланс:</p>
+            <p class="balance-amount-quest">{{ user.balance }} очков</p>
+        </div>
+        <div class="progress-wrapper-quest">
+            <div class="progress-bar-fill-quest-menu" style="width: {{ calendar_progress_percent }}%;"></div>
+
+        </div>
+        <div class="weekly-progress-percent-quest-menu">{{ calendar_progress_percent }}%</div>
+    </div>
+    <div id="quest-info-div">
+
+    </div>
+</div>
+<div id="task-info" class="task-info hidden">
+    <p class="now-playing-writing">Сейчас играю</p>
+    <div class="govno-percent-div">
+        <p class="weekly-progress-writing">Прогресс недели</p>
+        <div class="progress-wrapper">
+            <div class="progress-bar-fill-task-menu" style="width: {{ calendar_progress_percent }}%;"></div>
+
+        </div>
+        <div class="weekly-progress-percent-task-menu">{{ calendar_progress_percent }}%</div>
+
+    </div>
+
+    <img src="{% static 'game/img/tasks/goback.svg' %}" id="goback-button-task" class="goback-button">
+    <div class="avatar-wrapper-task">
+        <img src="{{ user.avatarka.url }}" alt="User Avatar" class="user-avatar-task">
+    </div>
+
+    <div id="task-info-div" class="task-info-div">
+
+    </div>
+</div>

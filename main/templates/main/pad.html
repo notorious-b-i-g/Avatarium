@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+</head>
+<body>
+    <main>
+        <div class="fullscreen-container">
+            <div id="loading-screen" style="position: fixed; display: flex; top: 0; left: 0; width: 100%; height: 100%;
+                background-color: #001e31; z-index: 9999; align-items: center; justify-content: center;">
+                <img src="{% static 'game/img/load.gif' %}" class="load-gif" style="width: 200px; height: 200px;">
+            </div>
+        </div>
+    </main>
+
+    <!-- Подключение внешнего JavaScript файла -->
+    <script src="{% static 'main/js/pad?v=1.0.2.js' %}"></script>
+</body>
+</html>

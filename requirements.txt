@@ -1,0 +1,4 @@
+django
+phonenumbers
+pillow
+gunicorn

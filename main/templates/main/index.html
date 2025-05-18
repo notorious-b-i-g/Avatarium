@@ -1,0 +1,49 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Р“Р»Р°РІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°{% endblock %}
+
+
+{% block page_1 %}
+    <img id="background-img1" src="{% static 'main/img/about_0.svg' %}" class="background-image">
+    <img src="{% static 'main/img/avatarium_logo.svg' %}" alt="Логотип Аватариум" class="avatarium-logo-large" id="logo-large">
+    <p class="wellcome"> Добро пожаловать в АВАТАРИУМ </p>
+    <p class="we-are-25-thousand"> Нас уже тысячи по всему миру </p>
+    <div class="control-panel">
+        <ul class="nav-icons">
+            <li><span id="custom-button1" class="single-button" onclick="loadNextImage()">Я с вами!</span></li>
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block page_2 %}
+    <img id="background-img2" src="{% static 'main/img/about_1.svg' %}" alt="Другое изображение" class="background-image">
+    <p class="p2t1">Аватариум - это <span class="p2t1w1"> игра,</span></p>
+    <p class="p2t2">которая поможет тебе воплотить свою желаемую жизнь в реальность - цели, желания, мечты</p>
+    <p class="p2t3"><span class="p2t3w1"> ПУТЬ</span> К ЛУЧШЕЙ ВЕРСИИ СЕБЯ</p>
+    <img src="{% static 'main/img/life_balance.svg' %}" class="life_balance">
+    <img src="{% static 'main/img/avatarium_logo.svg' %}" class="avatarium-logo-small">
+    <div class="control-panel">
+        <ul class="nav-icons">
+            <li><span id="custom-button2" class="single-button" onclick="loadNextImage()">Я с вами!</span></li>
+        </ul>
+    </div>
+
+
+{% endblock %}
+
+{% block page_3 %}
+    <img id="background-img3" src="{% static 'main/img/about_2.svg' %}" alt="Другое изображение" class="background-image">
+    <p class="p3t1"> Используй <span class="p3t1w1">инструкцию</span> к своим врожденным талантам</p>
+    <img src="{% static 'main/img/avatarium_logo.svg' %}" class="avatarium-logo-small">
+    <img src="{% static 'main/img/bad_img.svg' %}" class="bad_img">
+    <div class="control-panel">
+        <ul class="nav-icons">
+         	<a id="custom-button3" class="single-button" onclick="window.location.href='https://matricasutbi.online/game/?username={{ username }}&usertelegramname={{ usertelegramname }}'">
+    			Хочу узнать
+		    </a>
+        </ul>
+    </div>
+
+{% endblock %}

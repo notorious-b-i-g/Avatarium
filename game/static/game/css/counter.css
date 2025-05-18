@@ -1,0 +1,358 @@
+.add-counter-div{
+    position: absolute;
+    width: 80%;
+    height: 50px;
+    bottom: 10%;
+    background: linear-gradient(271.9deg, #0AB0D7 0%, #496AD7 126.33%);
+    opacity: 0.9;
+    border-radius: 20px;
+    bottom: 10%;
+    transform: translateX(-50%);
+    left: 50%;
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.add-new-counter-writing{
+    margin: 0;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 17px;
+    letter-spacing: 0.01em;
+    color: #FFFFFF;
+
+}
+
+.counter-menu-div {
+    position: absolute;
+    width: 100vw;
+    height: 88%;
+    left: 0px;
+    bottom: 0px;
+
+    background: #DBDDE1;
+
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.counter-menu-writings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 22px;
+}
+
+
+.counter-create-buttons{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 14px;
+    /* identical to box height, or 82% */
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    color: #41576B;
+
+
+}
+.counter-form{
+    width: 90%;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+}
+.input-counter-name{
+    background: #FFFFFF;
+    opacity: 0.58;
+    border-radius: 20px;
+    width: 100%;
+    height: 70px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 14px;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: #000;
+    border: none;
+    outline: none;
+    padding: 30px;
+}
+
+.counter-stats-div{
+    background: #FFFFFF;
+    opacity: 0.58;
+    border-radius: 20px;
+    width: 90%;
+    margin-bottom: 1em;
+
+}
+.counter-stats-div-sec{
+    background: #FFFFFF;
+    opacity: 0.58;
+    border-radius: 20px;
+    width: 90%;
+    margin-bottom: 1em;
+    height:159;
+}
+.counter-stats-line-target{
+    display: flex;
+    justify-content: space-between;
+    height: 73px;
+    border-bottom: 1px solid #D1D5DB;
+}
+
+.counter-stats-line-current{
+    display: flex;
+    justify-content: space-between;
+    height: 73px;
+}
+
+.counter-quantity{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 14px;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: #41576B;
+    border: none;
+    outline: none;
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.counter-quantity-input{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 17px;
+    text-align: right;
+    margin: 0;
+    color: #0AB0D7;
+    border: none;
+    width: 110px;
+    outline: none;
+    margin-right: 30px;
+}
+
+.counter-quantity-data{
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 17px;
+    text-align: right;
+    margin: 0;
+    color: #0AB0D7;
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.remove-counter{
+    height: 70px;
+    width: 90%;
+    background: #FFFFFF;
+    border-radius: 20px;
+    opacity: 0.58;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.remove-counter-writing{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 14px;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: #D24040;
+}
+
+.counters-list{
+    position: absolute;
+    top: 34%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50%;
+    width: 90vw;
+    overflow-y: auto;
+}
+
+.counter {
+    position: relative;
+    display: flex;
+    min-height: 6vh;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 22px;
+    margin-bottom: 2vh;
+    line-height: 14px;
+    letter-spacing: -0.01em;
+    overflow: hidden; /* ������ �� ������ ��������� �� ������� */
+}
+
+/* ������������� ��� ������������ ���������� */
+.counter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%; /* ����������� ���������� ������ */
+    background: linear-gradient(90deg, #12B3D9 0%, #B0DBFF 100%);
+    border-radius: 22px;
+    transition: width 0.3s ease-in-out; /* ������� ��������� ������ */
+    z-index: 0; /* ��� ��������� */
+}
+
+/* ������� ������ ������ ���� ������ ��������� */
+.counter * {
+    position: relative;
+    z-index: 1;
+}
+
+.counter-data-div{
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    width: 65%;
+
+}
+
+.counter-name{
+    margin-bottom: 5px;
+    font-size: 3.5vw;
+    font-family: 'Montserrat', sans-serif;
+    color: #41576B;
+    width: 70%;
+    font-weight: 600;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+.counter-score{
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 15px;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: #41576B;
+
+
+}
+
+.increment-button{
+    margin: 0;
+    font-size: 4.5vw;
+    font-family: 'Montserrat', sans-serif;
+    color: #0AB0D7;
+    max-width: 70%;
+    font-weight: 700;
+    word-wrap: break-word;
+    right: 20%;
+    position: absolute;
+    padding-left: 15px;
+    background: #C2D7E3;
+    border-radius: 17px;
+    padding-right: 15px;
+    padding-top: 7px;
+    padding-bottom: 6px;
+}
+
+.edit-button{
+    position: absolute;
+    width: auto;
+    min-width: 10px;
+    max-width: 17px;
+    height: 2vh;
+    min-height: 7px;
+    max-height: 25px;
+    right: 3vw;
+    transform: translateY(-50%);
+    top: 50%;
+}
+
+.counter-img-div{
+    position: absolute;
+    left: 50%;
+    top: 11%;
+    transform: translateX(-50%);
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.counter-title-text{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 3px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #FFFFFF;
+}
+
+.counter-title-text-second{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #FFFFFF;
+}
+.add-counter{
+    height: 70px;
+    width: 90%;
+    background: linear-gradient(80.67deg, #0AB0D7, #496AD7);
+    border-radius: 20px;
+    opacity: 0.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+}
+.counter-create-buttons{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 14px;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: white;
+}

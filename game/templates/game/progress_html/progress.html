@@ -1,0 +1,159 @@
+<!-- templates/game/progress_html/progress.html -->
+{% load static %}
+
+
+<div id="progress-content-div" class="progress-content">
+
+    <div class="avatar-progress">
+        <img src="{{ user.avatarka.url }}" alt="{{ user.name }}" class="avatar-img-progress">
+    </div>
+    <p class="my-avatar">Мой аватар</p>
+    <div class="balance">
+        <img src="{% static 'game/img/progress/balance-img.svg' %}" class="dollar-img">
+        <p class="balance-title">Баланс:</p>
+        <p class="balance-amount">{{user.balance}} очков</p>
+    </div>
+    <div class ="bar-conteiner">
+        <p class ="progress-bar-text">Прогресс недели</p>
+        <div class="progress-bar-calendar">
+            <div class="progress-bar-fill-calendar" style="width: {{calendar_progress_percent}}%;"></div>
+        </div>
+        <p class="percent-text">{{calendar_progress_percent}}%</p>
+    </div>
+    <div class="calendar">
+        {% for j in days_range %}
+            {% if forloop.counter in completed_days %}
+                <div class="completed-container">
+                    <div class="completed-day">
+                        <img src="{% static 'game/img/progress/completed_icon.svg' %}" class="day-of-defeat">
+                    </div>
+                    <p class="day-num">{{ j }} день</p>
+                </div>
+            {% else %}
+                <div class="not-completed-day"></div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+
+    <!-- Кнопки для переключения между типами игр -->
+    <div id="progress-menu" class="progress-menu">
+        <p id="top-games-button" class="progress-button">Мои                      топ-игры</p>
+        <p id="near-games-button" class="progress-button active-border">Ближайшая игра (список задач)</p>
+        <p id="future-games-button" class="progress-button">Игры на будущее</p>
+    </div>
+
+    <!-- Секции для каждого типа игр -->
+    <div id="progress-content" class="progress-content">
+
+        <!-- Секция топ-игр -->
+        <div id="top-games-section" class="progress-section hidden">
+            <div class = "top-games-container">
+                {% for task in tasks_top_completed %}
+                    <div class="gradient-border">
+                        <div class="task-item" data-task-id="{{ task.id }}">
+                            <p class="task-description">{{ task.task.category.title }}</p>
+                            <p class="task-title-top">«{{ task.task.title }}»</p>
+                            <p class="task-completed">Выполнено</p>
+                            <img src="{% static 'game/img/progress/completed_icon.svg' %}" class="completed-icon">
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% for task in tasks_top_noncompleted %}
+                    <div class="gradient-border-none">
+                        <div class="task-item" data-task-id="{{ task.id }}">
+                            <p class="task-description">{{ task.task.category.title }}</p>
+                            <p class="task-title-top">«{{ task.task.title }}»</p>
+                            <p class="task-completed">В процессе</p>
+                            <img src="{% static 'game/img/progress/notcompleted_icon.svg' %}" class="completed-icon">
+                        </div>
+                    </div>
+                {% endfor %}
+                {% for _ in tasks_decoration_range %}
+                    <div class="decoration-container">
+                        <img src="{% static 'game/img/progress/lock_icon.svg' %}" class="lock-img">
+                    </div>
+                {% endfor %}
+            </div>
+
+
+        </div>
+
+        <!-- Секция ближайших игр -->
+        <div id="near-games-section" class="progress-section">
+            <div class="games-container">
+                {% for category_data in task_categories_near %}
+                    {% with category=category_data.category %}
+                    <div class="category-container-progress" data-category-id="{{ category.id }}" data-category-name="{{ category.title }}">
+                        <p class="category-progress-title">Прогресс прохождения категории</p>
+                        <div class="category-button-progress">
+                            <img src="{{ category.logo.url }}" alt="{{ category.title }}" class="task-logo-progress">
+                        </div>
+                        <p class="category-name-progress">{{ category.title }}</p>
+                        <span class="progress-bar-snus">
+                            <span class="progress-bar-fill" style="width: {{ category_data.progress_percent}}%;"></span>
+                        </span>
+                        <p class="category-stats">
+                            {{ category_data.completed_tasks }} из {{ category_data.total_tasks }}
+                        </p>
+                    </div>
+                    {% endwith %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Секция игр на будущее -->
+        <div id="future-games-section" class="progress-section hidden">
+            <div class="games-container">
+                {% for category_data in task_categories_future %}
+                    {% with category=category_data.category %}
+                   <div class="category-container-progress" data-category-id="{{ category.id }}" data-category-name="{{ category.title }}">
+                        <p class="category-progress-title">Прогресс прохождения категории</p>
+                        <div class="category-button-progress">
+                            <img src="{{ category.logo.url }}" alt="{{ category.title }}" class="task-logo-progress">
+                        </div>
+                        <p class="category-name-progress">{{ category.title }}</p>
+                        <div class="progress-bar-snus">
+                            <div class="progress-bar-fill" style="width: {{category_data.progress_percent}}%; "></div>
+                        </div>
+                        <p class="category-stats">
+                            {{ category_data.completed_tasks }} из {{ category_data.total_tasks }}
+                        </p>
+                    </div>
+                    {% endwith %}
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Блок task-list, вынесенный за пределы progress-content -->
+    <div id="task-list-section" class="task-list-section hidden">
+        <div id="task-list-content" class="task-list-content">
+            <!-- Здесь будут отображаться задачи выбранной категории -->
+        </div>
+    </div>
+</div>
+
+<div id="task-info" class="task-info hidden">
+    <p class="now-playing-writing">Сейчас играю</p>
+    <div class="govno-percent-div">
+        <p class="weekly-progress-writing">Прогресс недели</p>
+        <div class="progress-wrapper">
+            <div class="progress-bar-fill-task-menu" style="width: {{ calendar_progress_percent }}%;"></div>
+
+        </div>
+        <div class="weekly-progress-percent-task-menu">{{ calendar_progress_percent }}%</div>
+
+    </div>
+
+    <img src="{% static 'game/img/tasks/goback.svg' %}" id="goback-button" class="goback-button">
+    <div class="avatar-wrapper-task">
+        <img src="{{ user.avatarka.url }}" alt="User Avatar" class="user-avatar-task">
+    </div>
+
+    <div id="task-info-div" class="task-info-div">
+
+    </div>
+</div>

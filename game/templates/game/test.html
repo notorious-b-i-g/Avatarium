@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden; /* Предотвращаем прокрутку основного документа */
+    }
+    .scrollable-element {
+      overflow-y: auto; /* Изменяем на 'auto' */
+      -webkit-overflow-scrolling: touch; /* Обеспечиваем плавную прокрутку на iOS */
+      height: 100%; /* Занимаем всю высоту экрана */
+      font-size: 6.25rem;
+      border: 1px solid;
+    }
+  </style>
+</head>
+<body>
+  <div class="scrollable-element">
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
+    <div>Item 4</div>
+    <div>Item 5</div>
+    <div>Item 6</div>
+    <div>Item 7</div>
+    <div>Item 8</div>
+    <div>Item 9</div>
+    <div>Item 10</div>
+  </div>
+  <script>
+    // Функция для предотвращения сворачивания приложения
+    function preventAppCollapse(event) {
+      const scrollableElement = event.currentTarget;
+
+      // Если находимся на самом верху и пользователь пытается прокрутить вниз
+      if (scrollableElement.scrollTop === 0 && event.touches[0].clientY > startY) {
+        event.preventDefault();
+      }
+      // Если находимся в самом низу и пользователь пытается прокрутить вверх
+      else if (
+        scrollableElement.scrollTop + scrollableElement.clientHeight >= scrollableElement.scrollHeight &&
+        event.touches[0].clientY < startY
+      ) {
+        event.preventDefault();
+      }
+    }
+
+    let startY = 0;
+
+    const scrollableElement = document.querySelector('.scrollable-element');
+
+    scrollableElement.addEventListener('touchstart', function(event) {
+      startY = event.touches[0].clientY;
+    });
+
+    scrollableElement.addEventListener('touchmove', preventAppCollapse, { passive: false });
+  </script>
+</body>
+</html>

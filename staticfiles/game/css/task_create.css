@@ -1,0 +1,229 @@
+.task-create-menu {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Создать новую игру */
+.task-create-title{
+    position: absolute;
+    width: 35vw;
+    left: 15%;
+    top: 9%;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 5vw;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+
+    color: #FFFFFF;
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.game-writing{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 26px;
+    letter-spacing: -0.01em;
+    color: #0AB0D7;
+
+}
+
+.form-div-near{
+    width: 95%;
+    height: 30vh;
+    position: absolute;
+    top: 16%;
+    right: 0;
+}
+.form-div-far{
+    width: 95%;
+    height: 30vh;
+    position: absolute;
+    top: 55%;
+    right: 0;
+}
+.form-inputs-near,
+.form-inputs-far {
+    background: #FFFFFF;
+    height: 100%;
+    border-radius: 20px 0px 0px 20px;
+    position: absolute;
+    right: 0;
+    padding-left: 4vw;
+    padding-top: 2vh;
+    max-width: 95%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+
+.task-title-input,
+.task-cost-input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    margin-top: 8px;
+    margin-bottom: 6px;
+    width: 90%;
+    max-height: none;
+    overflow: visible;
+    resize: none;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 17px;
+    letter-spacing: -0.01em;
+    color: #41576B;
+
+}
+
+
+.task-title-input::placeholder {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 4vw;
+    line-height: 17px;
+    letter-spacing: -0.01em;
+    color: #4E6A83;
+
+}
+
+/* Введите текст описания */
+.task-desc-input::placeholder {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.01em;
+    color: #41576B;
+}
+
+.create-task-submit {
+    position: absolute;
+    top: 105%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: none;
+    mix-blend-mode: normal;
+    border-radius: 20px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    background: linear-gradient(90deg, #B4CAD6 0%, #B4CAD6 100%);
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+    height: 4vh;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.create-task-submit.completed {
+    background: linear-gradient(90deg, #81CACF 0%, #0AB0D7 100%);
+}
+
+.task-img-input{
+    display: none;
+}
+
+.upload-image-button{
+    position: absolute;
+    bottom: 4%;
+    left: 8%;
+    cursor: pointer;
+}
+
+.goback-button {
+    position: absolute;
+    left: 8%;
+    top: 11%;
+    cursor: pointer;
+}
+
+.avatar-wrapper {
+    position: absolute;
+    top: 8%;
+    left: 80%;
+    width: 13vw;
+    max-width: 60px;
+    height: 13vw;
+    max-height: 60px;
+    border-radius: 50%;
+    padding: 1px; /* Толщина границы */
+    background: linear-gradient(135deg, #0AB0D7, #5457A1); /* Градиент */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-avatar{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.favourites{
+    position: absolute;
+    top: 7%;
+    left: 90%;
+    z-index: 2;
+    width: 4%;
+}
+
+.image-preview-container {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    margin-top: 10px;
+    margin-left: 30px;
+    height: 30px;
+}
+
+.thumbnail {
+    width: 25vw;
+    height: 15vh;
+    object-fit: cover;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.task-item-desc-input{
+    width: 90%;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 13px;
+    letter-spacing: -0.01em;
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    position: relative;
+    top: -5px;
+}
+
+.task-item-form.has-marker li {
+    list-style-image: url('../img/tasks/paragraph_nc.svg'); /* Используем list-style-image */
+}
+
+.task-item-form:not(.has-marker) li {
+    list-style-type: none; /* Убираем маркер */
+}

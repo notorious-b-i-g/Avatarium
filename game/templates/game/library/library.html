@@ -1,0 +1,44 @@
+<!-- templates/game/index.html -->
+{% load static %}
+
+<div class="library-content">
+    <h1 class="lib-title">Библиотека</h1>
+    <div class="prosto-block">
+        <div id="slider-container-lib" class="slider-container-lib">
+        <div class="progress-bar-background">
+            <div id="progress-bar"></div>
+        </div>
+        <div id="slider-content">
+            {% for item in slider %}
+                {% if item %}
+                    <div class="slider-item">
+                        <!--{% if item.promo.description %}
+                        <p class = "slider-title">{{ item.promo.description }}</p>
+                        {% endif %}-->
+                        {% if item.promo_img %}
+                            <img src="{{ item.promo_img.url }}" alt="{{ item.promo.name }}" class="slider-img"
+                                 onclick="window.location.href='{{ item.url }}'">
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </div>
+        <div class="other_urls1">
+            <div>
+                <p class="other_text">Новый пост</p>
+                <a href="{{ other_urls.post_url }}" target="_blank" class="div-gradient-back">
+                    <img src="{{ other_urls.post_img.url }}" class ="post_img">
+                </a>
+            </div>
+            <div>
+                <p class="other_text">Новая практика</p>
+                <a href="{{ other_urls.practice_url }}" target="_blank" class="div-gradient-back">
+                    <img src="{{ other_urls.practice_img.url}}" class ="post_img">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

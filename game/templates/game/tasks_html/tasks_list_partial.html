@@ -1,0 +1,75 @@
+{% load static %}
+
+<img src="{% static 'game/img/tasks/filter.svg' %}" class="filter-img">
+<p class="category-writing">{{ russian_title }}</p>
+<div class="incomplete-tasks-div" id="near-tasks-div">
+    {% for task in near_tasks %}
+        <div class="task-content" data-quest-id="{{ task.id }}">
+            {% if task.task.top %}
+                <img src="{% static 'game/img/tasks/favourites.svg' %}" id="task-top-flag" class="task-top-img">
+            {% else %}
+                <img src="{% static 'game/img/tasks/favourites_ns.svg' %}" id="task-top-flag" class="task-top-img">
+            {% endif %}
+            <img src="{{ category_logo.url }}" class="task-logo-mini incomplete">
+            <p class="task-title incomplete-text">«{{ task.task.title }}»</p>
+            <p class="task-price">+{{ task.task.cost }}</p>
+            <img src="{% static 'game/img/quests/goto.svg' %}" class="goto-image">
+        </div>
+
+    {% endfor %}
+
+</div>
+
+<div class="complete-tasks-div hidden" id="far-tasks-div">
+    {% for task in far_tasks %}
+        <div class="task-content" data-quest-id="{{ task.id }}">
+            {% if task.task.top %}
+                <img src="{% static 'game/img/tasks/favourites.svg' %}" id="task-top-flag" class="task-top-img">
+            {% else %}
+                <img src="{% static 'game/img/tasks/favourites_ns.svg' %}" id="task-top-flag" class="task-top-img">
+            {% endif %}
+            <img src="{{ category_logo.url }}" class="task-logo-mini incomplete">
+            <p class="task-title incomplete-text">«{{ task.task.title }}»</p>
+            <p class="task-price">+{{ task.task.cost }}</p>
+            <img src="{% static 'game/img/quests/goto.svg' %}" class="goto-image">
+        </div>
+    {% endfor %}
+</div>
+
+<div class="complete-tasks-div hidden" id="completed-tasks-div">
+    {% for task in complete_tasks %}
+        <div class="task-content completed" data-quest-id="{{ task.id }}">
+            {% if task.task.top %}
+                <img src="{% static 'game/img/tasks/favourites.svg' %}" id="task-top-flag" class="task-top-img">
+            {% else %}
+                <img src="{% static 'game/img/tasks/favourites_ns.svg' %}" id="task-top-flag" class="task-top-img">
+            {% endif %}
+            <div class="complete-mark-div">
+                <div class="complete-marker-div">
+                    <img src="{% static 'game/img/tasks/complete_marker.svg' %}" class="complete-marker">
+                    <img src="{{ category_logo.url }}" class="task-logo-mini complete">
+                </div>
+                </div>
+            <p class="task-title complete-text">«{{ task.task.title }}»</p>
+            <img src="{% static 'game/img/quests/goto.svg' %}" class="goto-image">
+        </div>
+    {% endfor %}
+</div>
+
+<div class="active-list-switch">
+    <p id="near-tasks" class="all-tasks active-border">Ближайшие</p>
+    <p id="far-tasks" class="all-tasks">На будущее</p>
+    <p id="completed-tasks" class="completed-tasks">Выполненные</p>
+
+</div>
+
+
+<div id="task-create-panel" class="task-create-panel {{ task_category }}" data-category="{{ task_category }}">
+    <img src="{{ category_logo.url }}" class="task-mini-logo">
+
+    <p class="task-create-text">Создать новую игру</p>
+    <img src="{% static 'game/img/tasks/plus.svg' %}" class="plus-logo">
+</div>
+
+
+
