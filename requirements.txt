@@ -2,3 +2,4 @@ django
 phonenumbers
 pillow
 gunicorn
+psycopg2-binary

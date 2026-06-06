@@ -14,7 +14,6 @@ from django.views.decorators.http import require_POST
 
 def log(request):
     data = request.POST
-    print(data, flush=True)
     return JsonResponse({'result': data})
 
 
@@ -22,7 +21,6 @@ def game(request):
     username = request.GET.get('username')
     request.session['username'] = username
 
-    print(username)
     user = Users.objects.filter(name=username).first()
     user_nickname = (user.nickname.split(' ')[0][:11] if user.nickname else None)
     user_telegram_name = (user.telegram_name[:11] if user.telegram_name else user.name)
@@ -38,7 +36,6 @@ def game(request):
 
 @csrf_exempt
 def update_task_name(request):
-    print("update_task_name called", flush=True)
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
         task_id = data.get('task_id')
@@ -184,7 +181,6 @@ def update_weekly_challenge(request):
 
 def index(request):
     username = request.session.get('username')
-    print(username)
     user = Users.objects.filter(name=username).first()
     slider = Promo.objects.filter(show_place='main')
     user_quests_top_noncompleted = UserQuest.objects.filter(user=user, quest__top=True, completed=False).select_related(
@@ -809,7 +805,6 @@ def edit_task(request):
 
     for image_obj in task_images:
         if image_obj.image.name not in relative_image_urls:
-            print(f"Удаляем изображение: {image_obj.image}")
             image_obj.delete()
 
     # Добавление новых изображений из image_files (если есть)

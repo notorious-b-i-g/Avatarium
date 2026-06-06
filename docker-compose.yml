@@ -1,15 +1,22 @@
-version: '3.8'
-
 services:
   web:
     build: .
     container_name: avatarium-django
+    command: sh -c "python manage.py migrate && gunicorn avatarium.wsgi:application --bind 0.0.0.0:8000"
     ports:
       - "8000:8000"
     volumes:
       - .:/app
     environment:
-      - DEBUG=1
+      - SECRET_KEY=${SECRET_KEY:-dev-insecure-change-me}
+      - DEBUG=${DEBUG:-False}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-*}
+      - DB_ENGINE=django.db.backends.postgresql
+      - DB_NAME=avatarium_db
+      - DB_USER=avatarium_user
+      - DB_PASSWORD=avatarium_pass
+      - DB_HOST=db
+      - DB_PORT=5432
     depends_on:
       - db
 
