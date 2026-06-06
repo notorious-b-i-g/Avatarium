@@ -1,0 +1,20 @@
+# Секреты
+.env
+
+# Python / Django
+__pycache__/
+*.py[cod]
+*.sqlite3
+db.sqlite3
+nohup.out
+
+# Сгенерированное / пользовательский контент — не в репозитории
+staticfiles/
+media/
+
+# Node
+node_modules/
+
+# IDE
+.idea/
+.vscode/
